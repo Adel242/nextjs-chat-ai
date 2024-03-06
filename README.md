@@ -29,3 +29,6 @@ Dependencies:
 
 Contributions:
 are welcome. Please, open an issue or make a pull request with your changes.
+
+URL for viewing 
+https://nextjs-chat-extension.vercel.app/

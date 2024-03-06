@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+README
 
-## Getting Started
+Description This project is an implementation of a chatbot using OpenAI GPT-3.5-turbo. The chatbot receives messages from the user and responds in real time. It uses the openai-edge package to communicate directly with the OpenAI API.
 
-First, run the development server:
+Use: 
+Client
+The client uses the custom hook useChat, which handles messages and user interactions with the chatbot. The hook takes a configuration object as an argument, which includes the API address and initial messages.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The Home function is the main component that displays the chatbot interface and uses useChat to interact with it.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Server:
+The server acts as an intermediary between the client and the OpenAI API. It uses OpenAI's configuration to authenticate with the API and send chat requests.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The POST function handles POST requests coming from the client. It extracts the messages from the request, sends them to the OpenAI API and returns the response.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Installation:
+1. Make sure you have Node.js and npm installed on your machine. 
+2. Clone this repository. 
+3. Install the project dependencies with npm install. 
+4. Create a .env file at the root of your project and add your OpenAI API key as OPENAI_API_KEY. 
 
-## Learn More
+Use:
+To start the project, use the npm start command. Open your browser at http://localhost:3000 to interact with the chatbot.
 
-To learn more about Next.js, take a look at the following resources:
+Dependencies:
+1. ai/react: Necessary for the useChat hook. 
+2. next/server: Used to handle server responses. 
+3. openai-edge: Used to interact with the OpenAI API. Contributions 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions:
+are welcome. Please, open an issue or make a pull request with your changes.

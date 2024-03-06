@@ -1,6 +1,6 @@
 README
 
-Description This project is an implementation of a chatbot using OpenAI GPT-3.5-turbo. The chatbot receives messages from the user and responds in real time. It uses the openai-edge package to communicate directly with the OpenAI API.
+Description: This project is an implementation of a chatbot using OpenAI GPT-3.5-turbo. The chatbot receives messages from the user and responds in real time. It uses the openai-edge package to communicate directly with the OpenAI API.
 
 Use: 
 Client

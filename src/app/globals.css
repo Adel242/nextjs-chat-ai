@@ -32,3 +32,26 @@ body {
     text-wrap: balance;
   }
 }
+
+.scrollbar {
+  --sb-track-color: hsl(218, 23%, 23%);
+  --sb-thumb-color: hsl(214, 20%, 69%);
+  --sb-size: 4px;
+
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 5px;
+}

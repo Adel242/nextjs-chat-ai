@@ -49,27 +49,26 @@ export default function Home() {
 
   //   setMessages(prevData => [...prevData, data.choices[0].message]);
   // };
- 
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-6">
       <div>
         {
           messages
-          .filter((message) => message.role === "user" || message.role === "assistant")
-          .map((message, index) => (
-            <div key={index}>
-              <div className="chat chat-start" >
-                {/* <div className="chat-image avatar"></div> */}
-                <div className="">{message.content}</div>
-
+            .filter((message) => message.role === "user" || message.role === "assistant")
+            .map((message, index) => (
+              <div key={index}>
+                <div className="chat chat-start" >
+                  {/* <div className="chat-image avatar"></div> */}
+                  <div className="">{message.content}</div>
+                </div>
               </div>
-            </div>
-          ))
+            ))
         }
       </div>
       <div className="w-full">
         <form onSubmit={handleSubmit} className="flex w-full flex-row p-6">
-          <textarea value={input} onChange={handleInputChange} className="w-full text-black p-2" placeholder="Enter tour message here"></textarea>
+          <textarea value={input} onChange={handleInputChange} className="w-full text-black p-2" placeholder="Enter your message here"></textarea>
           <button className="hover:bg bg-[rgb(var(--background-button-send))]" type="submit"> send</button>
         </form>
       </div>

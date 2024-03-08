@@ -1,35 +1,21 @@
 "use client"
 import { useChat } from "ai/react";
-import { useEffect, useMemo, useState } from "react";
-import { Agent } from "./types";
+import { useState } from "react";
+import useFilteredAgents from '../../src/app/components/filterAgent';
+import useFetchAgents from '../../src/app/components/useFetchAgents';
 
 export default function Home() {
-  const [selectedAgent, setSelectedAgent] = useState<Agent>();
+  const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents();
   const { messages, input, handleInputChange, handleSubmit, error } = useChat({
     api: 'api/chat',
     body: {
       agentId: selectedAgent?.id
     }
   });
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [initialAgents, setInitialAgents] = useState<Agent[]>([]);
-
-  useEffect(() => {
-    fetch('/api/agents').then(res => res.json()).then(agents => {
-      setInitialAgents(agents)
-      setSelectedAgent(agents[0])
-    })
-  }, []);
-
   const [search, setSearch] = useState('');
 
-  const agents = useMemo(() => {
-    const agents = initialAgents.filter(agent => agent.name.toLowerCase().includes(search.toLowerCase()))
-    if (!agents) {
-      return []
-    } return agents
-  }, [initialAgents, search])
+  const agents = useFilteredAgents(initialAgents, search);
 
   return (
     <main className="flex min-h-screen flex-col  justify-between p-6">
@@ -53,7 +39,7 @@ export default function Home() {
               <input type="text" id="input-group-search" value={search} onChange={(e) => setSearch(e.currentTarget.value)} className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search user" />
             </div>
           </div>
-          
+
           <ul className="h-48 px-3 pb-3 overflow-y-auto scrollbar text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
             {agents.map(agent => {
               const { id, name } = agent
@@ -67,7 +53,6 @@ export default function Home() {
             })}
           </ul>
         </div>
-
       </div>
 
       <div>

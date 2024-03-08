@@ -7,10 +7,9 @@ const agents = await getAgents()
   return NextResponse.json(agents)
 };
 
-
 async function getAgents() {
   const agents = await codegpt.getAgents();
   return agents
-}
+};
 
-type Agent = Awaited<ReturnType<typeof getAgents>>[number]
+type Agent = Awaited<ReturnType<typeof getAgents>>[number];

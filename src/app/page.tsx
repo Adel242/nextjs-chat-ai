@@ -5,6 +5,9 @@ import useFilteredAgents from '../../src/app/components/filterAgent';
 import useFetchAgents from '../../src/app/components/useFetchAgents';
 
 export default function Home() {
+  const [windowSize, setWindowSize] = useState({ width: undefined, height: undefined });
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [search, setSearch] = useState('');
   const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents();
   const { messages, input, handleInputChange, handleSubmit, error } = useChat({
     api: 'api/chat',
@@ -12,22 +15,25 @@ export default function Home() {
       agentId: selectedAgent?.id
     }
   });
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [search, setSearch] = useState('');
 
   const agents = useFilteredAgents(initialAgents, search);
 
   return (
-    <main className="flex min-h-screen flex-col  justify-between p-6">
+    <main className="flex min-h-screen flex-row  justify-between p-6 m-2">
 
-      <div>
-        <button onClick={() => setIsDropdownOpen(prev => !prev)} id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom" className="text-white mb-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown search
+      <div className="w-1/3">
+        <button onClick={() => setIsDropdownOpen(prev => !prev)}
+          id="dropdownSearchButton"
+          data-dropdown-toggle="dropdownSearch"
+          data-dropdown-placement="bottom"
+          type="button"
+          className="justify-between w-full text-white mb-4 bg-purple-500 hover:bg-purple-600 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-1 text-center inline-flex items-center dark:bg-purple-800 ">Agentes
           <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
           </svg>
         </button>
 
-        <div id="dropdownSearch" className="z-10 bg-white rounded-lg shadow w-60 dark:bg-gray-700" style={{ display: isDropdownOpen ? 'block' : 'none' }}>
+        <div id="dropdownSearch" className="z-10 bg-white rounded-lg shadow w-100 dark:bg-gray-700 " style={{ display: isDropdownOpen ? 'block' : 'none' }}>
           <div className="p-3">
             <label htmlFor="input-group-search" className="sr-only">Search</label>
             <div className="relative">
@@ -55,26 +61,27 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
-        {
-          messages
-            .filter((message) => message.role === "user" || message.role === "assistant")
-            .map((message, index) => (
-              <div key={index}>
-                <div className="chat chat-start" >
-                  {/* <div className="chat-image avatar"></div> */}
-                  <div className="">{message.content}</div>
+      <div className=" flex w-full flex-col justify-between ">
+        <div>
+          {
+            messages
+              .filter((message) => message.role === "user" || message.role === "assistant")
+              .map((message, index) => (
+                <div key={index}>
+                  <div className="chat chat-start p-6" >
+                    <div className="">{message.content}</div>
+                  </div>
                 </div>
-              </div>
-            ))
-        }
-      </div>
+              ))
+          }
+        </div>
 
-      <div className="w-full">
-        <form onSubmit={handleSubmit} className="flex w-full flex-row p-6">
-          <textarea value={input} onChange={handleInputChange} className="w-full text-black p-2" placeholder="Enter your message here"></textarea>
-          <button className="hover:bg bg-[rgb(var(--background-button-send))]" type="submit"> send</button>
-        </form>
+        <div className="w-full">
+          <form onSubmit={handleSubmit} className="flex  flex-row p-6">
+            <textarea value={input} onChange={handleInputChange} className="w-full text-black p-2 rounded-md" placeholder="Enter your message here"></textarea>
+            <button className="hover:bg bg-[rgb(var(--background-button-send))] p-2 ml-2 " type="submit"> send</button>
+          </form>
+        </div>
       </div>
     </main>
   )

@@ -4,7 +4,7 @@ import { useState } from "react";
 import useFilteredAgents from './components/useFilterAgent';
 import useFetchAgents from './components/useFetchAgents';
 import useCleanChat from "./components/useClearChat";
-//import Markdown from 'react-markdown'
+import ReactMar from 'react-markdown'
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -29,17 +29,11 @@ export default function Home() {
     <main className="flex min-h-screen flex-row  justify-between p-6 m-2">
 
       <div className="w-1/3">
-        <button onClick={() => setIsDropdownOpen(prev => !prev)}
-          id="dropdownSearchButton"
-          data-dropdown-toggle="dropdownSearch"
-          data-dropdown-placement="bottom"
-          type="button"
-          className="justify-between w-full text-white mb-4 bg-purple-500 hover:bg-purple-600 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-1 text-center inline-flex items-center dark:bg-purple-800 ">Agentes
+        <button onClick={() => setIsDropdownOpen(prev => !prev)} id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom" type="button" className="justify-between w-full text-white mb-4 bg-purple-500 hover:bg-purple-600 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-1 text-center inline-flex items-center dark:bg-purple-800 ">Agentes
           <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
           </svg>
         </button>
-
         <div id="dropdownSearch" className="z-10 bg-white rounded-lg shadow w-100 dark:bg-gray-700 " style={{ display: isDropdownOpen ? 'block' : 'none' }}>
           <div className="p-3">
             <label htmlFor="input-group-search" className="sr-only">Search</label>

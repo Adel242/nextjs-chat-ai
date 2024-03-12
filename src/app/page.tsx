@@ -1,15 +1,16 @@
 "use client"
 import { useChat } from "ai/react";
 import { useState } from "react";
-import useFilteredAgents from '../../src/app/components/filterAgent';
-import useFetchAgents from '../../src/app/components/useFetchAgents';
+import useFilteredAgents from './components/useFilterAgent';
+import useFetchAgents from './components/useFetchAgents';
+import useCleanChat from "./components/useClearChat";
+//import Markdown from 'react-markdown'
 
 export default function Home() {
-  const [windowSize, setWindowSize] = useState({ width: undefined, height: undefined });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [search, setSearch] = useState('');
   const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents();
-  const { messages, input, handleInputChange, handleSubmit, error } = useChat({
+  const { messages, setMessages, input, handleInputChange, handleSubmit, error } = useChat({
     api: 'api/chat',
     body: {
       agentId: selectedAgent?.id
@@ -17,6 +18,12 @@ export default function Home() {
   });
 
   const agents = useFilteredAgents(initialAgents, search);
+  const { handleCleanChat } = useCleanChat();
+
+  const cleanChat = () => {
+    setMessages([])
+    handleCleanChat();
+  };
 
   return (
     <main className="flex min-h-screen flex-row  justify-between p-6 m-2">
@@ -78,8 +85,9 @@ export default function Home() {
 
         <div className="w-full">
           <form onSubmit={handleSubmit} className="flex  flex-row p-6">
+            <button onClick={cleanChat} type="button" className="hover:bg bg-[rgb(var(--background-button-send))] p-2 mr-2 rounded-md">Clean Chat</button>
             <textarea value={input} onChange={handleInputChange} className="w-full text-black p-2 rounded-md" placeholder="Enter your message here"></textarea>
-            <button className="hover:bg bg-[rgb(var(--background-button-send))] p-2 ml-2 " type="submit"> send</button>
+            <button className="hover:bg bg-[rgb(var(--background-button-send))] p-2 ml-2 rounded-md" type="submit"> send</button>
           </form>
         </div>
       </div>

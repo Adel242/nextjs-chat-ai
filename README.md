@@ -1,34 +1,92 @@
-README
+# README for Chat Application
 
-Description: This project is an implementation of a chatbot using OpenAI GPT-3.5-turbo. The chatbot receives messages from the user and responds in real time. It uses the openai-edge package to communicate directly with the OpenAI API.
+This README provides an overview of a chat application built with React and various custom hooks for fetching, filtering, and managing chat data.
 
-Use: 
-Client
-The client uses the custom hook useChat, which handles messages and user interactions with the chatbot. The hook takes a configuration object as an argument, which includes the API address and initial messages.
+## Overview
 
-The Home function is the main component that displays the chatbot interface and uses useChat to interact with it.
+The chat application allows users to interact with agents, send messages, and manage chat sessions. It leverages React hooks for state management and side effects, and it includes a server-side component for fetching and posting data.
 
-Server:
-The server acts as an intermediary between the client and the OpenAI API. It uses OpenAI's configuration to authenticate with the API and send chat requests.
+## Features
 
-The POST function handles POST requests coming from the client. It extracts the messages from the request, sends them to the OpenAI API and returns the response.
+- Agent selection and search functionality
+- Real-time chat interface
+- Ability to clear the chat history
+- Server-side agent data fetching and message streaming
 
-Installation:
-1. Make sure you have Node.js and npm installed on your machine. 
-2. Clone this repository. 
-3. Install the project dependencies with npm install. 
-4. Create a .env file at the root of your project and add your OpenAI API key as OPENAI_API_KEY. 
+## Installation
 
-Use:
-To start the project, use the npm start command. Open your browser at http://localhost:3000 to interact with the chatbot.
+To get started with the chat application, clone the repository and install the necessary dependencies.
 
-Dependencies:
-1. ai/react: Necessary for the useChat hook. 
-2. next/server: Used to handle server responses. 
-3. openai-edge: Used to interact with the OpenAI API. Contributions 
+```bash
+git clone <repository-url>
+cd <repository-directory>
+npm install or pnpm install
+```
 
-Contributions:
-are welcome. Please, open an issue or make a pull request with your changes.
+## Usage
 
-URL for viewing 
-https://nextjs-chat-extension.vercel.app/
+To run the application, you can use the following command:
+
+```bash
+npm start
+```
+
+This will start the development server and open the application in your default web browser.
+
+## Components
+
+### `Home`
+
+The main component that renders the chat interface. It includes:
+
+- A dropdown to select an agent
+- A search input to filter agents
+- A chat display area to show messages
+- An input area to type and send new messages
+- A button to clear the chat
+
+### Custom Hooks
+
+#### `useChat`
+
+Manages the chat state, including messages, input changes, and submission.
+
+#### `useFetchAgents`
+
+Fetches the list of agents from the server and manages the selected agent state.
+
+#### `useFilteredAgents`
+
+Filters the agents based on the search input.
+
+#### `useCleanChat`
+
+Provides functionality to clear the chat history.
+
+## Server-Side
+
+### `GET`
+
+Handles fetching the list of agents from the server.
+
+### `POST`
+
+Handles sending messages to the server and streaming the response back to the client.
+
+## Types
+
+## Contributing
+
+Defines the structure of an agent object used throughout the application.
+
+## Development
+
+The application is set up with a modern React development environment. You can extend or modify the components and hooks as needed.
+
+## Contributing
+
+Contributions to the application are welcome. Please ensure that your code adheres to the existing style and that all tests pass before submitting a pull request.
+
+##  `URL`
+
+https://nextjs-chat-extension-git-main-adel242s-projects.vercel.app/

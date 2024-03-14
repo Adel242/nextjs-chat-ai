@@ -2,22 +2,22 @@ export interface Agent {
   id: string;
   org_id: string;
   created_at: Date;
-  pincode: null | string;
+  pincode?: string;
   is_public: boolean;
   welcome: string;
-  image: null | string;
+  image?: string;
   agent_type: AgentType;
   name: string;
   prompt: string;
   model: Model;
-  description: null;
+  description?: string;
   is_frozen: boolean;
 };
 
 export type Message = {
-  id: Date;
+  id: string;
   content: string;
-  role: string;
+  role: "function" | "system" | "user" | "assistant" | "data" | "tool";
 };
 
 export enum AgentType {

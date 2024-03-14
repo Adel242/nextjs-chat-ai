@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { Message } from '../../types';
+ import { Message } from '../../types';
 
-const useCleanChat = (setMessages: any) => {
-  const [chatClean, setChatClean] = useState<Message>();
+const useCleanChat = (setMessages: (messages: Message[]) => void) => {
   const handleCleanChat = () => {
-    setMessages([])
+    setMessages([]);
   };
 
-  return { chatClean, handleCleanChat };
+  return { handleCleanChat };
 };
 
 export default useCleanChat;

@@ -4,6 +4,7 @@ import { useState } from "react";
 import useFilteredAgents from './components/useFilterAgent';
 import useFetchAgents from './components/useFetchAgents';
 import useCleanChat from "./components/useClearChat";
+// import { measureMemory } from "vm";
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -20,7 +21,11 @@ export default function Home() {
   const agents = useFilteredAgents(initialAgents, search);
 
   // component useCleanChat
-  const { handleCleanChat } = useCleanChat(setMessages);
+  const { handleCleanChat } = useCleanChat(setMessages);  
+
+
+  // component useMarckdownShiki
+ 
 
   return (
     <main className="flex min-h-screen flex-row  justify-between p-6 m-2">

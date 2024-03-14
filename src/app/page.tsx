@@ -4,7 +4,6 @@ import { useState } from "react";
 import useFilteredAgents from './components/useFilterAgent';
 import useFetchAgents from './components/useFetchAgents';
 import useCleanChat from "./components/useClearChat";
-import ReactMar from 'react-markdown'
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,13 +16,11 @@ export default function Home() {
     }
   });
 
+  // component useFilteredAgents
   const agents = useFilteredAgents(initialAgents, search);
-  const { handleCleanChat } = useCleanChat();
 
-  const cleanChat = () => {
-    setMessages([])
-    handleCleanChat();
-  };
+  // component useCleanChat
+  const { handleCleanChat } = useCleanChat(setMessages);
 
   return (
     <main className="flex min-h-screen flex-row  justify-between p-6 m-2">
@@ -79,7 +76,7 @@ export default function Home() {
 
         <div className="w-full">
           <form onSubmit={handleSubmit} className="flex  flex-row p-6">
-            <button onClick={cleanChat} type="button" className="hover:bg bg-[rgb(var(--background-button-send))] p-2 mr-2 rounded-md">Clean Chat</button>
+            <button onClick={handleCleanChat} type="button" className="hover:bg bg-[rgb(var(--background-button-send))] p-2 mr-2 rounded-md">Clean Chat</button>
             <textarea value={input} onChange={handleInputChange} className="w-full text-black p-2 rounded-md" placeholder="Enter your message here"></textarea>
             <button className="hover:bg bg-[rgb(var(--background-button-send))] p-2 ml-2 rounded-md" type="submit"> send</button>
           </form>
@@ -88,3 +85,4 @@ export default function Home() {
     </main>
   )
 };
+

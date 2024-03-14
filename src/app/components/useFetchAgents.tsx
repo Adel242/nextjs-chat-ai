@@ -4,9 +4,7 @@ import { Agent } from '../../types';
 const useFetchAgents = () => {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [selectedAgent, setSelectedAgent] = useState<Agent>();
-  const [messages, setMessages] = useState([]);
-
-
+  
   useEffect(() => {
     fetch('/api/agents')
       .then(res => res.json())
@@ -16,12 +14,7 @@ const useFetchAgents = () => {
       })
   }, []);
 
-  const clearMessages = () => {
-    setMessages([]);
-  };
-
-
-  return { agents, selectedAgent, setSelectedAgent };
+    return { agents, selectedAgent, setSelectedAgent };
 }
 
 export default useFetchAgents;

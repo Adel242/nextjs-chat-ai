@@ -20,6 +20,12 @@ export type Message = {
   role: "function" | "system" | "user" | "assistant" | "data" | "tool";
 };
 
+export interface UseAgentSearchProps {
+  initialAgents: Agent[];
+  selectedAgent: Agent | undefined;
+  setSelectedAgent: (agent: Agent) => void;
+}
+
 export enum AgentType {
   QA = "qa",
 };

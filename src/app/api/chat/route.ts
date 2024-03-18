@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
   console.log('messages', messages)
   console.log('agent', agentId)
-  
+ 
   const stream = await codegpt.experimental_AIStream({ messages, agentId });
 
   return new StreamingTextResponse(stream);

@@ -1,5 +1,6 @@
-import { codegpt } from '@/code_gpt';
+// import { codegpt } from '@/code_gpt';
 import { StreamingTextResponse } from 'ai';
+import { format } from 'path';
 
 export const runtime = 'edge';
 
@@ -7,23 +8,47 @@ export async function POST(req: Request) {
 
   const { messages, agentId } = await req.json()
 
-  // console.log('messages', messages)
+  console.log('messages', messages)
   // console.log('agent', agentId)
 
-  const stream = await codegpt.experimental_AIStream({ messages, agentId });
+  const response = await fetch('https://api-beta.codegpt.co/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      "accept": "application/json",
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.JUDINI_API_KEY}`
+    },
+    body: JSON.stringify({
+      messages,
+      agentId,
+      format: 'text',
+      stream: true,
+    })
+  })
 
-  // let chatResponse = ''
-  // const reader = stream.getReader()
-  // const decoder = new TextDecoder()
-  // while (true) {
-  //   const { done, value } = await reader.read()
-  //   if (done) break
-  //   const content = decoder.decode(value)
-  //   chatResponse += content
-  //   console.log(content)
-  // }
+  if (response.body === null) {
+    throw new Error('Network response was not ok, eso.');
+  }
 
-  // console.log(chatResponse)
+  const reader = response.body.getReader();
 
-  return new StreamingTextResponse(stream);
+  const stream = new ReadableStream({
+    async start(controller) {
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) {
+          break;
+        }
+
+        controller.enqueue(value);
+
+      }
+
+      controller.close();
+    },
+  });
+
+  return new Response(stream, { headers: { "Content-Type": "text/plain" } })
+
 };

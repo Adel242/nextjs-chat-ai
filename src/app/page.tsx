@@ -5,7 +5,7 @@ import useFetchAgents from './components/useFetchAgents'
 import useCleanChat from "./components/useClearChat"
 import UseAgentSearch from "./components/useSearchAgent"
 import { MarkdownRender } from "./components/markdown-render"
-import { Avatar, Button, ScrollShadow, Textarea } from "@nextui-org/react"
+import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
 import { ArchiveBoxXMarkIcon, ArrowPathIcon } from "@heroicons/react/24/outline"
 // import { useState } from "react";
 // import useFilteredAgents from './components/useFilterAgent'
@@ -70,22 +70,26 @@ export default function Home() {
             variant="flat"
           >Clean Chat</Button> */}
           <div className="buttons flex gap-2 items-center absolute right-0 -top-10">
-            <Button
-              onPress={handleCleanChat}
-              size="sm"
-              variant="flat"
-              isIconOnly
-              startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
-            />
-            <Button
-              onPress={() => reload}
-              size="sm"
-              variant="flat"
-              isIconOnly
-              startContent={
-                <ArrowPathIcon className="w-4 h-4" />
-              }
-            />
+            <Tooltip content="Delete all messages" showArrow>
+              <Button
+                onPress={handleCleanChat}
+                size="sm"
+                variant="flat"
+                isIconOnly
+                startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
+              />
+            </Tooltip>
+            <Tooltip content="Resend last message" showArrow>
+              <Button
+                onPress={() => reload}
+                size="sm"
+                variant="flat"
+                isIconOnly
+                startContent={
+                  <ArrowPathIcon className="w-4 h-4" />
+                }
+              />
+            </Tooltip>
           </div>
           <Textarea
             value={input}

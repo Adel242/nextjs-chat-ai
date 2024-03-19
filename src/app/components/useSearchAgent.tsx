@@ -5,8 +5,8 @@ import { Select, SelectItem, Avatar } from "@nextui-org/react";
 import { SparklesIcon } from "@heroicons/react/24/outline";
 
 function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseAgentSearchProps) {
-  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [search, setSearch] = useState('');
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // component useFilteredAgents
   const agents = useFilteredAgents(initialAgents, search);
@@ -18,9 +18,31 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
     <>
     <Select
       items={agents}
-      label="Agents"
+      // label="Agents"
       placeholder="Select an agent"
+      // size="sm"
       className="max-w-xs"
+      classNames={{
+        // label: "group-data-[filled=true]:-translate-y-5",
+        // trigger: "min-h-unit-14",
+        // listboxWrapper: "max-h-[400px]",
+      }}
+      renderValue={(agents) => {
+        return agents.map((item) => (
+          <div key={item.data?.id} className="flex items-center gap-2">
+            <Avatar
+              alt={item.data?.name}
+              className="w-6 h-6 flex-shrink-0"
+              size="sm"
+              src={item.data?.image}
+            />
+            <div className="flex flex-col">
+              <span>{item.data?.name}</span>
+              {/* <span className="text-default-500 text-tiny">{item.data?.model}</span> */}
+            </div>
+          </div>
+        ));
+      }}
       // defaultSelectedKeys={[initialAgents.length > 0 ? initialAgents[0].id : 0]}
     >
       {(agent: any) => (

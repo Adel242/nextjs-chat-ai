@@ -6,7 +6,7 @@ import useCleanChat from "./components/useClearChat"
 import UseAgentSearch from "./components/useSearchAgent"
 import { MarkdownRender } from "./components/markdown-render"
 import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
-import { ArchiveBoxXMarkIcon, ArrowDownCircleIcon, ArrowPathIcon, PlayIcon } from "@heroicons/react/24/outline"
+import { ArchiveBoxXMarkIcon, ArrowPathIcon, PlayIcon } from "@heroicons/react/24/outline"
 // import { useState } from "react";
 // import useFilteredAgents from './components/useFilterAgent'
 
@@ -22,7 +22,9 @@ export default function Home() {
   })
 
   // component useCleanChat
-  const { handleCleanChat } = useCleanChat(setMessages);
+  const handleCleanChat = () => {
+    setMessages([])
+  };
 
   return (
     <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
@@ -63,32 +65,35 @@ export default function Home() {
           onSubmit={handleSubmit}
           className="grid relative w-full"
         >
-          <div className="buttons flex gap-2 items-center absolute right-0 -top-10">
-            <Tooltip content="Delete all messages" showArrow>
-              <Button
-                onPress={handleCleanChat}
-                size="sm"
-                variant="flat"
-                isIconOnly
-                startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
-              />
-            </Tooltip>
-            <Tooltip content="Resend last message" showArrow>
-              <Button
-                onPress={() => reload}
-                size="sm"
-                variant="flat"
-                isIconOnly
-                startContent={
-                  <ArrowPathIcon className="w-4 h-4" />
-                }
-              />
-            </Tooltip>
-          </div>
+          {
+            messages.length !== 0 && (
+              <div className="buttons flex gap-2 items-center absolute right-0 -top-10">
+                <Button
+                  size="sm"
+                  variant="flat"
+                  isDisabled={isLoading}
+                  isIconOnly
+                  startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
+                />
+                <Button
+                  onPress={() => reload}
+                  size="sm"
+                  isDisabled={isLoading}
+                  variant="flat"
+                  isIconOnly
+                  startContent={
+                    <ArrowPathIcon className="w-4 h-4" />
+                  }
+                />
+              </div>
+            )
+          }
           <Textarea
             value={input}
             onChange={handleInputChange}
             placeholder="Enter your message here"
+            minRows={1}
+            maxRows={3}
             endContent={
               <Button
                 type="submit"

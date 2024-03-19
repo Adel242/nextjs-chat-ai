@@ -18,11 +18,14 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
     <>
     <Select
       items={agents}
-      // label="Agents"
-      // size="sm"
       placeholder="Select an agent"
       className="max-w-xs"
+      label="Agent"
+      labelPlacement="outside"
       isLoading={agents.length === 0}
+      classNames={{
+        label: 'text-xs uppercase text-default-300'
+      }}
       renderValue={(agents) => {
         return agents.map((item) => (
           <div key={item.data?.id} className="flex items-center gap-2">

@@ -22,9 +22,7 @@ export default function Home() {
   })
 
   // component useCleanChat
-  const handleCleanChat = () => {
-    setMessages([])
-  };
+  const { handleCleanChat } = useCleanChat(setMessages);
 
   return (
     <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
@@ -60,51 +58,56 @@ export default function Home() {
         </div>
       </ScrollShadow>
       {/* Chat Input */}
-      <footer className="container max-w-lg mx-auto p-3">
+      <footer className="container max-w-lg mx-auto p-3" >
         <form
           onSubmit={handleSubmit}
           className="grid relative w-full"
-        >
-          {
-            messages.length !== 0 && (
-              <div className="buttons flex gap-2 items-center absolute right-0 -top-10">
-                <Button
-                  size="sm"
-                  variant="flat"
-                  isDisabled={isLoading}
-                  isIconOnly
-                  startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
-                />
-                <Button
-                  onPress={() => reload}
-                  size="sm"
-                  isDisabled={isLoading}
-                  variant="flat"
-                  isIconOnly
-                  startContent={
-                    <ArrowPathIcon className="w-4 h-4" />
-                  }
-                />
-              </div>
-            )
-          }
+        > 
+          <Button
+            onPress={handleCleanChat}
+            className="right-0 -top-10 fixed"
+            size="sm"
+            variant="flat"
+          >Clean Chat</Button>
+          <div className="buttons flex gap-2 items-center absolute right-0 -top-10">
+            <Tooltip content="Delete all messages" showArrow disableAnimation>
+              <Button
+                onPress={handleCleanChat}
+                size="sm"
+                variant="flat"
+                isIconOnly
+                startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
+              />
+            </Tooltip>
+            <Tooltip content="Resend last message" showArrow disableAnimation>
+              
+              <Button 
+                onPress={() => reload}
+                size="sm"
+                variant="flat"
+                isIconOnly
+                startContent={
+                  <ArrowPathIcon className="w-4 h-4" />
+                }
+              />
+            </Tooltip>
+          </div>
           <Textarea
             value={input}
             onChange={handleInputChange}
             placeholder="Enter your message here"
-            minRows={1}
-            maxRows={3}
+            onKeyUp={
+              (e) => { if (input.trim().length < 3 || isLoading) {return}
+                if (e.key === 'Enter' && !e.shiftKey) { handleSubmit(e as React.FormEvent<HTMLFormElement>) }
+                if (e.key === 'Enter') { handleSubmit }
+              }
+            }
             endContent={
               <Button
                 type="submit"
-                isDisabled={input.length < 3}
+                isDisabled={input.trim().length < 3 || isLoading}
                 color="primary"
-                startContent={
-                  !isLoading && <PlayIcon className="w-4 h-4" />
-                }
-                isIconOnly
-                isLoading={isLoading}
-              />
+              >Send</Button> 
             }
           />
         </form>

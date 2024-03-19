@@ -2,7 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* GENERAL */
+
+html {
+  font-size: 16px;
+}
+body {
+  z-index: 1;
+  font-size: 1rem;
+}
+
+html,
+body {
+  /* scroll smooth */
+  scroll-behavior: smooth;
+  /* scroll bar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--tw-bg-opacity) var(--tw-bg-opacity);
+  /* smooth font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  shape-rendering: geometricprecision;
+  text-rendering: optimizeLegibility;
+  /* improve kernel */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* improve kernel */
+  -webkit-overflow-scrolling: touch;
+  hyphens: auto;
+  letter-spacing: 0.01rem;
+  /* word-spacing: -0.01em; */
+  /* font-family: 'DM Sans', sans-serif; */
+  font-weight: 400;
+}
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -58,4 +95,4 @@ input {
 .scrollbar::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 5px;
-}
+} */

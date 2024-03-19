@@ -1,4 +1,4 @@
- import { Message } from '../../types';
+import { Message } from '../../types';
 
 const useCleanChat = (setMessages: (messages: Message[]) => void) => {
   const handleCleanChat = () => {
@@ -9,5 +9,3 @@ const useCleanChat = (setMessages: (messages: Message[]) => void) => {
 };
 
 export default useCleanChat;
-
-

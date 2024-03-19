@@ -1,60 +1,112 @@
 "use client"
-import { useChat } from "ai/react";
+
+import { useChat } from "ai/react"
+import useFetchAgents from './components/useFetchAgents'
+import useCleanChat from "./components/useClearChat"
+import UseAgentSearch from "./components/useSearchAgent"
+import { MarkdownRender } from "./components/markdown-render"
+import { Avatar, Button, ScrollShadow, Textarea } from "@nextui-org/react"
+import { ArchiveBoxXMarkIcon, ArrowPathIcon } from "@heroicons/react/24/outline"
 // import { useState } from "react";
-// import ReactMarkdown from 'react-markdown';
-// import remarkGfm from 'remark-gfm'
-// import ShikiHighlighter from './components/useMarckdownShiki';
-// import useFilteredAgents from './components/useFilterAgent';
-import useFetchAgents from './components/useFetchAgents';
-import useCleanChat from "./components/useClearChat";
-import UseAgentSearch from "./components/useSearchAgent";
+// import useFilteredAgents from './components/useFilterAgent'
 
 export default function Home() {
 
-  const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents();
-  const { messages, setMessages, input, handleInputChange, handleSubmit, error } = useChat({
+  const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents()
+
+  const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
     api: 'api/chat',
     body: {
       agentId: selectedAgent?.id
     }
-  });
+  })
 
   // component useCleanChat
   const { handleCleanChat } = useCleanChat(setMessages);
 
   return (
-    <main className="flex min-h-screen flex-row  justify-between p-6 m-2">
-
-      <UseAgentSearch
-        initialAgents={initialAgents}
-        selectedAgent={selectedAgent}
-        setSelectedAgent={setSelectedAgent}
-      />
-
-      <div className=" flex w-full flex-col justify-between ">
-
-        <div>
+    <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
+      <nav className='p-3'>
+        <UseAgentSearch
+          initialAgents={initialAgents}
+          selectedAgent={selectedAgent}
+          setSelectedAgent={setSelectedAgent}
+        />
+      </nav>
+      <ScrollShadow>
+        <div className="container grid gap-4 max-w-lg mx-auto pb-6">
           {
             messages
               .filter((message) => message.role === "user" || message.role === "assistant")
               .map((message, index) => (
-                <div key={index}>
-                  <div className="chat chat-start p-6">
-                    {message.content}
+                <div className='message px-2 py-4 rounded-2xl' key={index}>
+                  <div className="grid gap-2">
+                    <div className="flex gap-2 items-center">
+                      <Avatar
+                        className={`w-6 h-6 rounded-full ${ message.role === "user" ? "bg-orange-200" : "bg-primary-500" } `}
+                        src={ message.role === "user" ? '' : selectedAgent?.image } alt={ message.role === "user" ? "You" : selectedAgent?.name } size="sm" />
+                      <p>{message.role === "user" ? "You" : selectedAgent?.name}</p>
+                    </div>
+                    <div className="pl-8">
+                      <MarkdownRender content={message.content} />
+                      { isLoading && index === messages.length - 1 && <div><Button className="mt-2" isLoading variant="flat" size="sm">Thinking</Button></div> }
+                    </div>
                   </div>
                 </div>
-              ))
+            ))
           }
         </div>
-
-        <div className="w-full">
-          <form onSubmit={handleSubmit} className="flex  flex-row p-6">
-            <button onClick={handleCleanChat} type="button" className="hover:bg bg-[rgb(var(--background-button-send))] p-2 mr-2 rounded-md">Clean Chat</button>
-            <textarea value={input} onChange={handleInputChange} className="w-full text-black p-2 rounded-md" placeholder="Enter your message here"></textarea>
-            <button className="hover:bg bg-[rgb(var(--background-button-send))] p-2 ml-2 rounded-md" type="submit"> send</button>
-          </form>
-        </div>
-      </div>
-    </main>
-  );
+      </ScrollShadow>
+      {/* Chat Input */}
+      <footer className="container max-w-lg mx-auto p-3">
+        <form
+          onSubmit={handleSubmit}
+          className="grid relative w-full"
+        >
+          {/* <Button
+            onPress={handleCleanChat}
+            className="absolute right-0 -top-10"
+            size="sm"
+            variant="flat"
+          >Clean Chat</Button> */}
+          <div className="buttons flex gap-2 items-center absolute right-0 -top-10">
+            <Button
+              onPress={handleCleanChat}
+              size="sm"
+              variant="flat"
+              isIconOnly
+              startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
+            />
+            <Button
+              onPress={() => reload}
+              size="sm"
+              variant="flat"
+              isIconOnly
+              startContent={
+                <ArrowPathIcon className="w-4 h-4" />
+              }
+            />
+          </div>
+          <Textarea
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Enter your message here"
+            onKeyUp={
+              (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) { handleSubmit(e) }
+                if (e.key === 'Enter') { handleSubmit }
+              }
+            }
+            endContent={
+              <Button
+                type="submit"
+                isDisabled={input === ''}
+                color="primary"
+              >Send</Button>
+            }
+          />
+        </form>
+      </footer>
+    </div>
+  )
 }

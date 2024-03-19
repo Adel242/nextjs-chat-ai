@@ -25,9 +25,7 @@ export default async function RootLayout({ children, params }: Props) {
   return (
     <html lang={params.lang} className={`${font.className} ${theme}`} translate='no'>
       <body>
-        <Providers
-          theme={theme}
-        >
+        <Providers theme={theme}>
           {children}
         </Providers>
       </body>

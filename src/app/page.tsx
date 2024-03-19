@@ -6,7 +6,7 @@ import useCleanChat from "./components/useClearChat"
 import UseAgentSearch from "./components/useSearchAgent"
 import { MarkdownRender } from "./components/markdown-render"
 import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
-import { ArchiveBoxXMarkIcon, ArrowPathIcon } from "@heroicons/react/24/outline"
+import { ArchiveBoxXMarkIcon, ArrowDownCircleIcon, ArrowPathIcon, PlayIcon } from "@heroicons/react/24/outline"
 // import { useState } from "react";
 // import useFilteredAgents from './components/useFilterAgent'
 
@@ -63,12 +63,6 @@ export default function Home() {
           onSubmit={handleSubmit}
           className="grid relative w-full"
         >
-          {/* <Button
-            onPress={handleCleanChat}
-            className="absolute right-0 -top-10"
-            size="sm"
-            variant="flat"
-          >Clean Chat</Button> */}
           <div className="buttons flex gap-2 items-center absolute right-0 -top-10">
             <Tooltip content="Delete all messages" showArrow>
               <Button
@@ -95,18 +89,17 @@ export default function Home() {
             value={input}
             onChange={handleInputChange}
             placeholder="Enter your message here"
-            onKeyUp={
-              (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) { handleSubmit(e) }
-                if (e.key === 'Enter') { handleSubmit }
-              }
-            }
             endContent={
               <Button
                 type="submit"
-                isDisabled={input === ''}
+                isDisabled={input.length < 3}
                 color="primary"
-              >Send</Button>
+                startContent={
+                  !isLoading && <PlayIcon className="w-4 h-4" />
+                }
+                isIconOnly
+                isLoading={isLoading}
+              />
             }
           />
         </form>

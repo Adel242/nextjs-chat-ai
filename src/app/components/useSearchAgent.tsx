@@ -22,6 +22,7 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
       // size="sm"
       placeholder="Select an agent"
       className="max-w-xs"
+      isLoading={agents.length === 0}
       renderValue={(agents) => {
         return agents.map((item) => (
           <div key={item.data?.id} className="flex items-center gap-2">

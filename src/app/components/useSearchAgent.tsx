@@ -19,14 +19,9 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
     <Select
       items={agents}
       // label="Agents"
-      placeholder="Select an agent"
       // size="sm"
+      placeholder="Select an agent"
       className="max-w-xs"
-      classNames={{
-        // label: "group-data-[filled=true]:-translate-y-5",
-        // trigger: "min-h-unit-14",
-        // listboxWrapper: "max-h-[400px]",
-      }}
       renderValue={(agents) => {
         return agents.map((item) => (
           <div key={item.data?.id} className="flex items-center gap-2">
@@ -38,7 +33,6 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
             />
             <div className="flex flex-col">
               <span>{item.data?.name}</span>
-              {/* <span className="text-default-500 text-tiny">{item.data?.model}</span> */}
             </div>
           </div>
         ));

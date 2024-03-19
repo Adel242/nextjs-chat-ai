@@ -11,7 +11,6 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
   // component useFilteredAgents
   const agents = useFilteredAgents(initialAgents, search);
   // const agents = useFilteredAgents(initialAgents, search);
-
   // console.log('agents', initialAgents ? initialAgents[0].id : null)
 
   return (
@@ -19,6 +18,12 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
     <Select
       items={agents}
       placeholder="Select an agent"
+
+      onSelectionChange={
+        (agent) => console.log(agent)
+        // setSelectedAgentState(agent)
+      }
+
       className="max-w-xs"
       label="Agent"
       labelPlacement="outside"

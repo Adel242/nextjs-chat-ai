@@ -1,6 +1,6 @@
 import { Message } from '../../types';
 
-const useCleanChat = (setMessages: (messages: Message[]) => void) => {
+const CleanChat = (setMessages: (messages: Message[]) => void) => {
   const handleCleanChat = () => {
     setMessages([]);
   };
@@ -8,4 +8,4 @@ const useCleanChat = (setMessages: (messages: Message[]) => void) => {
   return { handleCleanChat };
 };
 
-export default useCleanChat;
+export default CleanChat;

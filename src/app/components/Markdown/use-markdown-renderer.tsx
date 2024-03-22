@@ -10,7 +10,8 @@ export default function useMarkdownRenderer() {
         dangerouslySetInnerHTML={{ __html: parse(markdownText) }}
       />
     )
-  }
+  };
+
   const renderMessageContent = useCallback((messageContent: string) => {
     const codeBlockRegex = /```(\w+)?\s*([\s\S]*?)\s*```/g // Updated regex
     let lastIndex = 0
@@ -25,7 +26,7 @@ export default function useMarkdownRenderer() {
       if (match.index > lastIndex) {
         const text = cleanMessageContent?.slice(lastIndex, match.index)
         elements.push(MarkdownRenderer({ markdownText: text }))
-      }
+      };
 
       // Add the code block
       const language = match[1] || '' // Extracted language
@@ -33,26 +34,26 @@ export default function useMarkdownRenderer() {
       elements.push(<CodeBlock language={language} value={code} />)
 
       lastIndex = match.index + match[0].length
-    }
+    };
 
     // Add the text after the last code block
     if (lastIndex < cleanMessageContent?.length) {
       const text = cleanMessageContent?.slice(lastIndex)
       elements.push(MarkdownRenderer({ markdownText: text }))
-    }
+    };
 
     elements = elements.map((element, index) => {
       return cloneElement(element, { key: 'render-msg-' + index })
-    })
+    });
 
     return elements
-  }, [])
+  }, []);
 
   function getFirstCodeBlockContent(str: string): string | null {
     const codeBlockRegex = /```(\w+)?\s*([\s\S]*?)\s*```/
     const match = codeBlockRegex.exec(str)
     return match ? match[2] : null
-  }
+  };
 
   return { renderMessageContent, getFirstCodeBlockContent }
-}
+};

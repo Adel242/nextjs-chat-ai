@@ -18,7 +18,7 @@ function UseAgentSearch({ initialAgents, selectedAgent, setSelectedAgent }: UseA
       <Select
         items={agents}
         placeholder="Select an agent"
-
+        disableAnimation
         onSelectionChange={
           (agent) => {
             const agentId = new Set(agent).values().next().value;

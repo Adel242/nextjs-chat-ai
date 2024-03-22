@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GENERAL */
+
+html {
+  font-size: 16px;
+}
+body {
+  z-index: 1;
+  font-size: 1rem;
+}
+
+html,
+body {
+  /* scroll smooth */
+  scroll-behavior: smooth;
+  /* scroll bar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--tw-bg-opacity) var(--tw-bg-opacity);
+  /* smooth font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  shape-rendering: geometricprecision;
+  text-rendering: optimizeLegibility;
+  /* improve kernel */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* improve kernel */
+  -webkit-overflow-scrolling: touch;
+  hyphens: auto;
+  letter-spacing: 0.01rem;
+  /* word-spacing: -0.01em; */
+  /* font-family: 'DM Sans', sans-serif; */
+  font-weight: 400;
+} 
+
+/* ------------------very old---------------------- *\
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 39, 39, 51, 1;
+    --background-end-rgb: 39, 39, 51, 1;
+    --background-button-send: 128 89 212;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+input {
+  background: 64, 65, 79, 1;
+}
+
+.scrollbar {
+  --sb-track-color: hsl(218, 23%, 23%);
+  --sb-thumb-color: hsl(214, 20%, 69%);
+  --sb-size: 4px;
+
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 5px;
+} */

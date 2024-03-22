@@ -2,97 +2,222 @@
 @tailwind components;
 @tailwind utilities;
 
-/* GENERAL */
+@layer base {
+    :root {
+        --background: 0 0% 98%;
+        --foreground: 240 10% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 10% 3.9%;
+        --primary: 240 5.9% 10%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 240 4.8% 95.9%;
+        --secondary-foreground: 240 5.9% 10%;
+        --muted: 240 4.8% 95.9%;
+        --muted-foreground: 240 3.8% 46.1%;
+        --accent: 240 4.8% 95.9%;
+        --accent-foreground: 240 5.9% 10%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 5.9% 90%;
+        --input: 240 5.9% 90%;
+        --ring: 240 5% 64.9%;
+        --radius: 0.5rem;
+    }
 
-html {
-  font-size: 16px;
+    .dark {
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 240 10% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 240 10% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 240 5.9% 10%;
+        --secondary: 240 3.7% 15.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 240 3.7% 15.9%;
+        --muted-foreground: 240 5% 64.9%;
+        --accent: 240 3.7% 15.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 85.7% 97.3%;
+        --border: 240 3.7% 15.9%;
+        --input: 240 3.7% 15.9%;
+        --ring: 240 4.9% 83.9%;
+    }
 }
-body {
-  z-index: 1;
-  font-size: 1rem;
-}
+
 
 html,
 body {
-  /* scroll smooth */
-  scroll-behavior: smooth;
-  /* scroll bar */
-  scrollbar-width: thin;
-  scrollbar-color: var(--tw-bg-opacity) var(--tw-bg-opacity);
-  /* smooth font */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  shape-rendering: geometricprecision;
-  text-rendering: optimizeLegibility;
-  /* improve kernel */
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  /* improve kernel */
-  -webkit-overflow-scrolling: touch;
-  hyphens: auto;
-  letter-spacing: 0.01rem;
-  /* word-spacing: -0.01em; */
-  /* font-family: 'DM Sans', sans-serif; */
-  font-weight: 400;
+    /* scroll smooth */
+    scroll-behavior: smooth;
+    /* scroll bar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--tw-bg-opacity) var(--tw-bg-opacity);
+    /* smooth font */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    shape-rendering: geometricprecision;
+    text-rendering: optimizeLegibility;
+    /* improve kernel */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* improve kernel */
+    -webkit-overflow-scrolling: touch;
+    hyphens: auto;
+    letter-spacing: 0.01rem;
+    /* word-spacing: -0.01em; */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
 }
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+@layer base {
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: 'rlig' 1, 'calt' 1;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 39, 39, 51, 1;
-    --background-end-rgb: 39, 39, 51, 1;
-    --background-button-send: 128 89 212;
-  }
+html {
+    font-size: 13px;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+p:not(:last-child) {
+    margin-bottom: .8em;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.codeblock {
+    font-size: 1rem !important;
 }
 
-input {
-  background: 64, 65, 79, 1;
+pre:has(div.codeblock) {
+    padding: 0;
+    margin: 1rem 0;
 }
 
-.scrollbar {
-  --sb-track-color: hsl(218, 23%, 23%);
-  --sb-thumb-color: hsl(214, 20%, 69%);
-  --sb-size: 4px;
-
-  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+div.codeblock {
+    background-color: rgb(40, 44, 52);
+    border-radius: 0.5rem;
+    margin: 1rem 0;
 }
 
-.scrollbar::-webkit-scrollbar {
-  width: var(--sb-size);
-  height: var(--sb-size);
+div.codeblock > div:first-child {
+    background-color: rgb(9, 9, 11, 0.4);
+    border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.scrollbar::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
-  border-radius: 5px;
+div > p > code {
+    font-weight: 600;
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
-  border-radius: 5px;
+pre {
+    border-radius: 0 0 0.5rem 0.5rem !important;
+}
+
+/*cuando el width sea superior a 767px*/
+/*@media (min-width: 767px) {*/
+/*    div.codeblock {*/
+/*        width: calc(100% - 1.5rem)*/
+/*    }*/
+/*}*/
+
+
+/* tables ↓ */
+.markdown table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border-color: #d9d9e3;
+    margin-bottom: 1rem;
+    caption-side: bottom;
+    margin-top: 1rem;
+}
+
+.markdown thead, .markdown tbody, .markdown tfoot, .markdown tr, .markdown td, .markdown th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+
+.markdown th:first-child {
+    border-top-left-radius: 0.375rem;
+}
+
+.markdown th:last-child {
+    border-top-right-radius: 0.375rem;
+    border-right-width: 1px;
+}
+
+.markdown th {
+    background-color: rgba(236, 236, 241, .2);
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    padding: 0.25rem 0.75rem;
+}
+
+.markdown thead tr th {
+    color: inherit;
+}
+
+.markdown tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 0.375rem;
+    border-left-width: 1px;
+}
+
+.markdown tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 0.375rem;
+    border-right-width: 1px;
+}
+
+.markdown td {
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    padding: 0.25rem 0.75rem;
+    font-size: .9rem;
+}
+
+.markdown td:last-child {
+    border-right-width: 1px;
+}
+
+/* aria-label="Notifications alt+T" */
+
+/* [aria-label="Notifications alt+T"] {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.15);
+    position: fixed;
+    z-index: 20;
+    opacity: 1;
+    backdrop-filter: blur(3px);
 } */
+
+#LiveProvidersBrother + div {
+    width: 100%;
+    height: 100%;
+}
+
+/* create a fade In animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}

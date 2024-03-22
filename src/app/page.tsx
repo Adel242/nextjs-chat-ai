@@ -4,14 +4,15 @@ import { useChat } from "ai/react"
 import useFetchAgents from './components/useFetchAgents'
 import useCleanChat from "./components/useClearChat"
 import UseAgentSearch from "./components/useSearchAgent"
-import { MarkdownRender } from "./components/markdown-render"
+import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
+// import { MarkdownRender } from "./components/markdown-render"
 import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
 import { ArchiveBoxXMarkIcon, ArrowPathIcon, PlayIcon } from "@heroicons/react/24/outline"
 // import { useState } from "react";
 // import useFilteredAgents from './components/useFilterAgent'
 
 export default function Home() {
-
+  const { renderMessageContent } = useMarkdownRenderer();
   const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents()
 
   const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
@@ -48,7 +49,8 @@ export default function Home() {
                       <p>{message.role === "user" ? "You" : selectedAgent?.name}</p>
                     </div>
                     <div className="pl-8">
-                      <MarkdownRender content={message.content} />
+                      { renderMessageContent(message.content) }
+                      {/* <MarkdownRender content={message.content} /> */}
                       { isLoading && index === messages.length - 1 && <div><Button className="mt-2" isLoading variant="flat" size="sm">Thinking</Button></div> }
                     </div>
                   </div>

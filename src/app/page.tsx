@@ -1,11 +1,13 @@
 "use client"
 
 import { useChat } from "ai/react"
+import Link from "next/link"
 import useFetchAgents from './components/useFetchAgents'
 import CleanChat from "./components/clean-chat"
 import SearchAgent from "./components/search-agent"
 import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
 // import { MarkdownRender } from "./components/markdown-render"
+import Navbar from "./navbar"
 import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
 import { ArchiveBoxXMarkIcon, ArrowPathIcon, PlayIcon } from "@heroicons/react/24/outline"
 // import FilteredAgents from './components/filterAgent'
@@ -27,6 +29,7 @@ export default function Home() {
   return (
     <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
       <nav className='p-3'>
+        {<Navbar />}
         <SearchAgent
           initialAgents={initialAgents}
           selectedAgent={selectedAgent}

@@ -1,14 +1,14 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-export default function useDropdown() {
+// export default function useDropdown() {
 
-  // Dropdown Agents
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
+//    Dropdown Agents
+//   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+//   const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
 
-  return {
-    isDropdownOpen,
-    toggleDropdown
-  };
-};
+//   return {
+//     isDropdownOpen,
+//     toggleDropdown
+//   };
+// };
 

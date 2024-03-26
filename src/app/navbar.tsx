@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import Setting from "./setting/setting";
 
 export default function Navbar() {
   return (
-    <ul>
+    <ul className=" flex flex-row justify-between">
       <li>
         <Link href="/">Home</Link>
       </li>

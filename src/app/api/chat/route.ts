@@ -16,7 +16,8 @@ export async function POST(req: Request) {
     headers: {
       "accept": "application/json",
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.JUDINI_API_KEY}`
+      'Authorization': `Bearer ${process.env.JUDINI_API_KEY}`,
+      // "CodeGPT-Org-Id":
     },
     body: JSON.stringify({
       messages,

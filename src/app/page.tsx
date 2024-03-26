@@ -1,13 +1,12 @@
 "use client"
 
 import { useChat } from "ai/react"
-import Link from "next/link"
+import {Message} from "../types"
 import useFetchAgents from './components/useFetchAgents'
 import CleanChat from "./components/clean-chat"
+import Navbar from "./navbar"
 import SearchAgent from "./components/search-agent"
 import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
-// import { MarkdownRender } from "./components/markdown-render"
-import Navbar from "./navbar"
 import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
 import { ArchiveBoxXMarkIcon, ArrowPathIcon, PlayIcon } from "@heroicons/react/24/outline"
 // import FilteredAgents from './components/filterAgent'
@@ -40,8 +39,8 @@ export default function Home() {
         <div className="container grid gap-4 max-w-2xl p-1 text-lg mx-auto pb-6">
           {
             messages
-              .filter((message) => message.role === "user" || message.role === "assistant")
-              .map((message, index) => (
+              .filter((message: Message) => message.role === "user" || message.role === "assistant")
+              .map((message: Message, index: number) => (
                 <div className='message px-2 py-4 rounded-2xl' key={index}>
                   <div className="grid gap-2">
                     <div className="flex gap-2 items-center">
@@ -52,7 +51,6 @@ export default function Home() {
                     </div>
                     <div className="">
                       {renderMessageContent(message.content)}
-                      {/* <MarkdownRender content={message.content} /> */}
                       {isLoading && index === messages.length - 1 && <div><Button className="mt-2" isLoading variant="flat" size="sm">Thinking</Button></div>}
                     </div>
                   </div>

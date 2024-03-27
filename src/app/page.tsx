@@ -1,34 +1,53 @@
 "use client"
 
 import { useChat } from "ai/react"
-import {Message} from "../types"
+import { Message } from "../types"
+import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
+import { ArchiveBoxXMarkIcon, ArrowPathIcon } from "@heroicons/react/24/outline"
+import { useCredentialsStore } from "./stores/store"
 import useFetchAgents from './components/useFetchAgents'
 import CleanChat from "./components/clean-chat"
-import Navbar from "./navbar"
 import SearchAgent from "./components/search-agent"
 import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
-import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
-import { ArchiveBoxXMarkIcon, ArrowPathIcon, PlayIcon } from "@heroicons/react/24/outline"
+import { useRouter } from "next/navigation"
+
 // import FilteredAgents from './components/filterAgent'
 
 export default function Home() {
   const { renderMessageContent } = useMarkdownRenderer();
   const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents()
-
+  const { apiKey, orgId } = useCredentialsStore()
   const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
     api: 'api/chat',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      "CodeGPT-Org-Id": `${orgId}`
+    },
     body: {
       agentId: selectedAgent?.id
     }
   });
+  const router = useRouter();
+
 
   // component clean-chat
   const { handleCleanChat } = CleanChat(setMessages);
 
+  const handleCredentials = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!apiKey) {
+      const confirmed = confirm('insert api key for continue')
+      if (confirmed) {
+        router.push('/setting')
+      }
+      return
+    }
+    handleSubmit(e)
+  };
+
   return (
     <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
       <nav className='p-3'>
-        {<Navbar />}
         <SearchAgent
           initialAgents={initialAgents}
           selectedAgent={selectedAgent}
@@ -62,7 +81,7 @@ export default function Home() {
       </ScrollShadow>
       {/* Chat Input */}
       <footer className="container max-w-lg mx-auto p-3" >
-        <form onSubmit={handleSubmit} className="grid relative w-full">
+        <form onSubmit={e => handleCredentials(e)} className="grid relative w-full">
 
           <Button
             onPress={handleCleanChat}
@@ -104,8 +123,8 @@ export default function Home() {
             onKeyUp={
               (e) => {
                 if (input.trim().length < 3 || isLoading) { return }
-                if (e.key === 'Enter' && !e.shiftKey) { handleSubmit(e as React.FormEvent<HTMLFormElement>) }
-                if (e.key === 'Enter') { handleSubmit }
+                if (e.key === 'Enter' && !e.shiftKey) { handleCredentials(e as React.FormEvent<HTMLFormElement>) }
+                if (e.key === 'Enter') { handleCredentials }
               }
             }
             endContent={
@@ -121,4 +140,4 @@ export default function Home() {
       </footer>
     </div>
   )
-}
+};

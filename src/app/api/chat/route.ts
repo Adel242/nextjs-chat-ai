@@ -1,13 +1,17 @@
 // import { codegpt } from '@/code_gpt';
 import { StreamingTextResponse } from 'ai';
+import { headers } from 'next/headers';
 import { format } from 'path';
+
 
 export const runtime = 'edge';
 
 export async function POST(req: Request) {
 
   const { messages, agentId } = await req.json()
-
+  const headersList = headers()
+  const authToken = headersList.get('Authorization') || '';
+  const orgId = headersList.get('CodeGPT-Org-Id') || '';
   console.log('messages', messages)
   // console.log('agent', agentId)
 
@@ -16,14 +20,15 @@ export async function POST(req: Request) {
     headers: {
       "accept": "application/json",
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.JUDINI_API_KEY}`,
-      // "CodeGPT-Org-Id":
+      'Authorization': `${authToken}`,
+      "CodeGPT-Org-Id": `${orgId}`
     },
     body: JSON.stringify({
       messages,
       agentId,
       format: 'text',
       stream: true,
+      orgId,
     })
   })
 

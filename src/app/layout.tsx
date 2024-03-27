@@ -1,6 +1,8 @@
 import './globals.css'
 import { DM_Sans } from 'next/font/google'
+import Navbar from './components/navbar'
 import { Providers } from './providers'
+
 
 interface Props {
   theme: string
@@ -26,6 +28,7 @@ export default async function RootLayout({ children, params }: Props) {
     <html lang={params.lang} className={`${font.className} ${theme}`} translate='no'>
       <body>
         <Providers theme={theme}>
+          <Navbar />
           {children}
         </Providers>
       </body>

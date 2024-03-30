@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react";
 import { Textarea, Button } from "@nextui-org/react";
 import { useCredentialsStore } from "@/app/stores/store";
 import { useRouter } from "next/navigation";
@@ -13,7 +12,8 @@ const Setting = () => {
     const apiKey = formData.get('apiKey') as string ?? "";
     const orgId = formData.get('orgId') as string ?? "";
     if (!apiKey) {
-      alert('Insert your apiKey')
+      // alert('Insert your apiKey')
+      
       return
     }
     setCredentials({ apiKey, orgId });
@@ -30,7 +30,7 @@ const Setting = () => {
               name="apiKey"
               placeholder="Enter your auth token"
               className="max-w-xs flex items-center"
-              description="Para obtener tu Api Key, visita https://platform.openai.com/account/api-keys"
+              description="To get your API Key, visit the CodeGPT Playground"
               defaultValue={apiKey}
               endContent={
                 <Button
@@ -48,7 +48,7 @@ const Setting = () => {
               placeholder="Enter your organization id"
               className="max-w-xs"
               defaultValue={orgId}
-              description="Para obtener tu Organization Id, visita "
+              description="To obtain your Organization Id, check the playground for your organization's ID"
             />
           </div>
         </form>
@@ -56,5 +56,7 @@ const Setting = () => {
     </>
   )
 };
+
+
 
 export default Setting;

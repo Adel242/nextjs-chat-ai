@@ -3,12 +3,16 @@ import useFilteredAgents from './filtered-agent';
 import { UseAgentSearchProps } from '../../types';
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
 import { SparklesIcon } from "@heroicons/react/24/outline";
+import { useCredentialsStore } from "../stores/store";
 
-function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent }: UseAgentSearchProps) {
+function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent  }: UseAgentSearchProps) {
   const [search, setSearch] = useState('');
 
   // component useFilteredAgents
   const agents = useFilteredAgents(initialAgents, search);
+
+  // function useCredentials ./Home
+  const apiKey = useCredentialsStore((state) => state.apiKey);
 
   return (
     <>
@@ -26,11 +30,11 @@ function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent }: UseAgen
             setSelectedAgent(getAgent!);
           }
         }
-
         className="max-w-xs"
         label="Agent"
         labelPlacement="outside"
-        isLoading={agents.length === 0}
+        isLoading={!!apiKey && agents.length === 0}
+        isDisabled={!apiKey}
         classNames={{
           label: 'text-xs uppercase text-default-300'
         }}

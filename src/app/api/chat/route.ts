@@ -30,11 +30,11 @@ export async function POST(req: Request) {
       stream: true,
       orgId,
     })
-  })
+  });
 
   if (response.body === null) {
     throw new Error('Network response was not ok, eso.');
-  }
+  };
 
   const reader = response.body.getReader();
 

@@ -8,7 +8,7 @@ export default function ModalWelcome() {
   const router = useRouter();
 
   useEffect(() => {
-    onOpen(); 
+    onOpen();
   }, [onOpen])
 
   const handleRedirect = () => {
@@ -21,7 +21,7 @@ export default function ModalWelcome() {
       <Modal
         backdrop="blur"
         isOpen={isOpen}
-      hideCloseButton={true}
+        hideCloseButton={true}
         radius="lg"
         classNames={{
           body: "py-10 px-5",
@@ -30,34 +30,26 @@ export default function ModalWelcome() {
         }}
       >
         <ModalContent>
-            <ModalHeader className="flex flex-col gap-1"/>
-            <p className="p-5">CHAT CODE-GPT</p>
-            <ModalBody>
-              <p className="">
-                CODE GPT
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam pulvinar risus non risus hendrerit venenatis.
-                Pellentesque sit amet hendrerit risus, sed porttitor quam.
-              </p>
-              <p>
-                Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis.
-                Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod.
-                Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur
-                proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-              </p>
-            </ModalBody>
-            
-            <ModalFooter>
-              <Button
-                className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
-                onClick={handleRedirect}>
-                Login
-              </Button>
-            </ModalFooter>
+          <ModalHeader className="flex flex-col gap-1" />
+          <p className="p-5">CHAT CODE-GPT</p>
+          <ModalBody>
+            <p>
+              CODE GPT
+            </p>
+            <p>
+              Welcome to the era of chatbots! Explore, experiment, and be amazed by what you can achieve. We&apos;re thrilled to have you here!
+            </p>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
+              onClick={handleRedirect}>
+              Login
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
-    </>);
+    </>
+  );
 }

@@ -1,7 +1,6 @@
-// import { codegpt } from '@/code_gpt';
-import { StreamingTextResponse } from 'ai';
+// import { StreamingTextResponse } from 'ai';
 import { headers } from 'next/headers';
-import { format } from 'path';
+// import { format } from 'path';
 
 
 export const runtime = 'edge';
@@ -10,18 +9,16 @@ export async function POST(req: Request) {
 
   const { messages, agentId } = await req.json()
   const headersList = headers()
-  const authToken = headersList.get('Authorization') || '';
+  const apiKey = headersList.get('Authorization') || '';
   const orgId = headersList.get('CodeGPT-Org-Id') || '';
-  console.log('messages', messages)
-  // console.log('agent', agentId)
 
   const response = await fetch('https://api-beta.codegpt.co/api/v1/chat/completions', {
     method: 'POST',
     headers: {
       "accept": "application/json",
       'Content-Type': 'application/json',
-      'Authorization': `${authToken}`,
-      "CodeGPT-Org-Id": `${orgId}`
+      'Authorization': `${apiKey}`,
+      // "CodeGPT-Org-Id": `${orgId}`
     },
     body: JSON.stringify({
       messages,

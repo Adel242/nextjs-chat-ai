@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useFilteredAgents from './filtered-agent';
+import  FilteredAgents  from './filtered-agent';
 import { UseAgentSearchProps } from '../../types';
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
 import { SparklesIcon } from "@heroicons/react/24/outline";
@@ -9,7 +9,7 @@ function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent  }: UseAge
   const [search, setSearch] = useState('');
 
   // component useFilteredAgents
-  const agents = useFilteredAgents(initialAgents, search);
+  const agents = FilteredAgents(initialAgents, search);
 
   // function useCredentials ./Home
   const apiKey = useCredentialsStore((state) => state.apiKey);

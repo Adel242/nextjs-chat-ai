@@ -2,20 +2,17 @@
 import { Textarea, Button } from "@nextui-org/react";
 import { useCredentialsStore } from "@/app/stores/store";
 import { useRouter } from "next/navigation";
-const Setting = () => {
+const Login = () => {
 
   const { setCredentials, apiKey, orgId } = useCredentialsStore();
   const router = useRouter();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const apiKey = formData.get('apiKey') as string ?? "";
     const orgId = formData.get('orgId') as string ?? "";
-    if (!apiKey) {
-      // alert('Insert your apiKey')
-      
-      return
-    }
+    if (!apiKey) { return }
     setCredentials({ apiKey, orgId });
     router.push('/');
   };
@@ -59,4 +56,4 @@ const Setting = () => {
 
 
 
-export default Setting;
+export default Login;

@@ -1,5 +1,6 @@
 "use client"
 
+import React, { useState } from "react"
 import { useChat } from "ai/react"
 import { Message } from "../types"
 import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/react"
@@ -11,48 +12,46 @@ import useFetchAgents from './components/useFetchAgents'
 import CleanChat from "./components/clean-chat"
 import SearchAgent from "./components/search-agent"
 import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
-
-
 // import FilteredAgents from './components/filterAgent'
 
 export default function Home() {
   const { apiKey, orgId } = useCredentialsStore();
+  const [handleModal, setHandleModal] = useState(false);
   const { renderMessageContent } = useMarkdownRenderer();
   const { agents: initialAgents, selectedAgent, setSelectedAgent } = useFetchAgents({ apiKey, orgId });
+
+  const headers: HeadersInit = {
+    "accept": "application/json",
+    "Authorization": `Bearer ${apiKey}`
+  }
+  if (orgId) headers["CodeGPT-Org-Id"] = orgId
+
   const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
     api: 'api/chat',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      "CodeGPT-Org-Id": `${orgId}`
-    },
+    headers,
     body: {
       agentId: selectedAgent?.id
     }
   });
+
   const router = useRouter();
 
   // component clean-chat
   const { handleCleanChat } = CleanChat(setMessages);
 
-  // credentials in setting
-
-
-
   const handleCredentials = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!apiKey) {
-      const confirmed = < ModalWelcome />
-      if (confirmed) {
-        router.push('/setting');
-      }
+      setHandleModal(false)
+      router.push('/setting');
       return
     }
+    setHandleModal(true);
     handleSubmit(e);
-  };
+  }
 
   return (
     <>
-
       <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
         <nav className='p-3'>
           <SearchAgent
@@ -60,9 +59,10 @@ export default function Home() {
             selectedAgent={selectedAgent}
             setSelectedAgent={setSelectedAgent}
           />
-
         </nav>
-        < ModalWelcome />
+
+        {!apiKey && <ModalWelcome />}
+
         <ScrollShadow>
           <div className="container grid gap-4 max-w-2xl p-1 text-lg mx-auto pb-6">
             {

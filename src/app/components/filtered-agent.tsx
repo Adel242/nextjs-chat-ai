@@ -24,5 +24,4 @@ const FilteredAgents = (initialAgents: Agent[], search: string) => {
   return agents;
 };
 
-
 export default FilteredAgents;

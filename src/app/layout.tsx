@@ -1,6 +1,5 @@
 import './globals.css'
 import { DM_Sans } from 'next/font/google'
-import Navbar from './components/navbar'
 import { Providers } from './providers'
 
 
@@ -28,7 +27,7 @@ export default async function RootLayout({ children, params }: Props) {
     <html lang={params.lang} className={`${font.className} ${theme}`} translate='no'>
       <body>
         <Providers theme={theme}>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
         </Providers>
       </body>

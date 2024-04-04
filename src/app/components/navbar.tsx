@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+
 export default function Navbar() {
   return (
     <ul className=" flex flex-row justify-between">
@@ -7,9 +8,9 @@ export default function Navbar() {
         <Link href="/">Home</Link>
       </li>
 
-      <li>
-        <Link href="/setting">Setting</Link>
-      </li>
+      {/* <li>
+        <Link href="/login">Log in</Link>
+      </li> */}
     </ul>
   );
 };

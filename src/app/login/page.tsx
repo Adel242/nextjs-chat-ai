@@ -4,10 +4,10 @@ import { Textarea, Button } from "@nextui-org/react";
 import { useCredentialsStore } from "@/app/stores/store";
 import { useRouter } from "next/navigation";
 
-const Login = () => {
 
+export default function Login() {
   const { setCredentials, apiKey, orgId } = useCredentialsStore();
-  const [isError, setIsError] = useState(false);
+  // const [isError, setIsError] = useState(false); pendiente definicion de error
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -15,9 +15,13 @@ const Login = () => {
     const formData = new FormData(event.currentTarget);
     const apiKey = formData.get('apiKey') as string ?? "";
     const orgId = formData.get('orgId') as string ?? "";
-    if (!apiKey) { return }
+    // if (!apiKey) {
+    //   const sustantApiKey = localStorage.getItem('apiKey');
+    //   const sustantOrgId = localStorage.getItem('orgId');
+    // }
     // setCredentials({ apiKey, orgId });
     // router.push('/');
+
     try {
       const response = await fetch('https://api-beta.codegpt.co/api/v1/agents', {
         headers: {
@@ -27,12 +31,14 @@ const Login = () => {
       });
       if (response.ok) {
         setCredentials({ apiKey, orgId });
+        localStorage.setItem('apiKey', apiKey);
+        // localStorage.setItem('orgId', orgId);
         router.push('/');
       } else {
         throw new Error('Invalid API Key');
       }
     } catch (error) {
-      setIsError(true)
+      alert('Invalid API Key')   //setIsError(true)  necesito definir tipo de error
     }
   };
 
@@ -47,12 +53,13 @@ const Login = () => {
               placeholder="Enter your auth token"
               className="max-w-xs flex items-center"
               description="To get your API Key, visit the CodeGPT Playground"
-              defaultValue={apiKey}
+              defaultValue={typeof window !== 'undefined' ? window.localStorage.apiKey : ''}
               endContent={
                 <Button
                   color="primary"
                   type="submit">
-                  Submit</Button>
+                  Submit
+                </Button>
               }
             />
           </div>
@@ -70,9 +77,5 @@ const Login = () => {
         </form>
       </div>
     </>
-  )
-};
-
-
-
-export default Login;
+  );
+}

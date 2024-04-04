@@ -8,11 +8,16 @@ export default function ModalWelcome() {
   const router = useRouter();
 
   useEffect(() => {
-    onOpen();
+    const apiKey = localStorage.getItem('apiKey');
+    // const orgId = localStorage.getItem('orgId');
+    if(!apiKey ) {
+      onOpen();
+    }
+
   }, [onOpen])
 
   const handleRedirect = () => {
-    router.push('/setting');
+    router.push('/login');
     onClose();
   }
 

@@ -12,9 +12,12 @@ import useFetchAgents from './components/useFetchAgents'
 import CleanChat from "./components/clean-chat"
 import SearchAgent from "./components/search-agent"
 import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
-// import FilteredAgents from './components/filterAgent'
+import DropdownNavbar from "./components/dropdown-navbar";
+import Navbar from './components/navbar'
+
 
 export default function Home() {
+  const [agentImage, setAgentImage] = useState("");
   const { apiKey, orgId } = useCredentialsStore();
   const [handleModal, setHandleModal] = useState(false);
   const { renderMessageContent } = useMarkdownRenderer();
@@ -23,14 +26,14 @@ export default function Home() {
   const headers: HeadersInit = {
     "accept": "application/json",
     "Authorization": `Bearer ${apiKey}`
-  }
+  };
   if (orgId) headers["CodeGPT-Org-Id"] = orgId
 
   const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
     api: 'api/chat',
     headers,
     body: {
-      agentId: selectedAgent?.id
+      agentId: selectedAgent?.id,
     }
   });
 
@@ -40,25 +43,40 @@ export default function Home() {
   const { handleCleanChat } = CleanChat(setMessages);
 
   const handleCredentials = (e: React.FormEvent<HTMLFormElement>) => {
+    const apiKey = localStorage.getItem('apiKey');
+    // const orgId = localStorage.getItem('orgId');
     e.preventDefault()
+    // if (!selectedAgent) {
+    //   alert("show selecte agent");
+    //   return;
+    // }
     if (!apiKey) {
       setHandleModal(false)
-      router.push('/setting');
+      router.push('/credentials');
       return
     }
     setHandleModal(true);
     handleSubmit(e);
-  }
+  };
 
   return (
     <>
       <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
-        <nav className='p-3'>
-          <SearchAgent
-            initialAgents={initialAgents}
-            selectedAgent={selectedAgent}
-            setSelectedAgent={setSelectedAgent}
-          />
+        <nav className="flex justify-between p-4">
+          <div className="flex-grow">
+            {<SearchAgent
+              initialAgents={initialAgents}
+              selectedAgent={selectedAgent}
+              setSelectedAgent={setSelectedAgent}
+            />
+            }
+          </div>
+          <div className="flex-grow mx-4">
+            <Navbar />
+          </div>
+          <div className="flex-grow text-right">
+            <DropdownNavbar />
+          </div>
         </nav>
 
         {!apiKey && <ModalWelcome />}
@@ -74,7 +92,8 @@ export default function Home() {
                       <div className="flex gap-2 items-center">
                         <Avatar
                           className={`w-6 h-6 rounded-full ${message.role === "user" ? "bg-orange-200" : "bg-primary-500"} `}
-                          src={message.role === "user" ? '' : selectedAgent?.image} alt={message.role === "user" ? "You" : selectedAgent?.name} size="sm" />
+                          src={message.role === "user" ? '' : selectedAgent?.image} alt={message.role === "user" ? "You" : selectedAgent?.name} size="sm"
+                        />
                         <p>{message.role === "user" ? "You" : selectedAgent?.name}</p>
                       </div>
                       <div className="">
@@ -106,6 +125,7 @@ export default function Home() {
                   size="sm"
                   variant="flat"
                   isIconOnly
+                  isDisabled={isLoading}
                   startContent={<ArchiveBoxXMarkIcon className="w-4 h-4" />}
                 />
               </Tooltip>
@@ -116,6 +136,7 @@ export default function Home() {
                   size="sm"
                   variant="flat"
                   isIconOnly
+                  isDisabled={isLoading}
                   startContent={
                     <ArrowPathIcon className="w-4 h-4" />
                   }

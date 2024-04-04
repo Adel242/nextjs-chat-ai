@@ -5,7 +5,7 @@ import { Select, SelectItem, Avatar } from "@nextui-org/react";
 import { SparklesIcon } from "@heroicons/react/24/outline";
 import { useCredentialsStore } from "../stores/store";
 
-function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent  }: UseAgentSearchProps) {
+export default function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent  }: UseAgentSearchProps) {
   const [search, setSearch] = useState('');
 
   // component useFilteredAgents
@@ -71,4 +71,3 @@ function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent  }: UseAge
   );
 }
 
-export default SearchAgent;

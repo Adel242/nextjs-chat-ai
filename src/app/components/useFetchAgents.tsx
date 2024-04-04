@@ -24,7 +24,7 @@ const useFetchAgents = ({ apiKey, orgId }: { apiKey: string, orgId: string }) =>
       });
 
     // get agents marketplace
-    fetch(`https://api-beta.codegpt.co/api/v1/agent/marketplace-favorites `, {
+    fetch(`https://api-beta.codegpt.co/api/v1/agent/marketplace`, {
       headers
     }).then(res => res.json()).
       then(agents => {

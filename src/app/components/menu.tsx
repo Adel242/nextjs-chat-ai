@@ -8,11 +8,11 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem,
 export default function Menu() {
 
   // useCredentials ./store
-  const {setCredentials} = useCredentialsStore()
+  const { setCredentials } = useCredentialsStore()
   const router = useRouter()
 
   const closeSession = () => {
-    setCredentials({ apiKey: '', orgId: '' });
+    setCredentials({ apiKey: "", orgId: "" });
     localStorage.removeItem('apiKey');
     localStorage.removeItem('orgId');
     router.push('/login');

@@ -1,6 +1,10 @@
+"use client"
+
 import './globals.css'
 import { DM_Sans } from 'next/font/google'
 import { Providers } from './providers'
+import { useEffect } from 'react'
+import { useCredentialsStore } from './stores/store'
 
 
 interface Props {
@@ -21,8 +25,16 @@ interface Props {
   children: React.ReactNode
 }
 
-export default async function RootLayout({ children, params }: Props) {
+export default function RootLayout({ children, params }: Props) {
   const theme = 'dark'
+  const {setCredentials} =  useCredentialsStore()
+
+  useEffect(() => {
+    const apiKey = localStorage.getItem('apiKey') ?? ""
+    const orgId = localStorage.getItem('orgId') ?? ""
+    setCredentials({apiKey, orgId})
+  },[])
+  
   return (
     <html lang={params.lang} className={`${font.className} ${theme}`} translate='no'>
       <body>

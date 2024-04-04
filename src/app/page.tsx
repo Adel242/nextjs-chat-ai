@@ -12,7 +12,7 @@ import useFetchAgents from './components/useFetchAgents'
 import CleanChat from "./components/clean-chat"
 import SearchAgent from "./components/search-agent"
 import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
-import DropdownNavbar from "./components/dropdown-navbar";
+import DropdownNavbar from "./components/menu";
 import Navbar from './components/navbar'
 
 
@@ -52,7 +52,7 @@ export default function Home() {
     // }
     if (!apiKey) {
       setHandleModal(false)
-      router.push('/credentials');
+      router.push('/login');
       return
     }
     setHandleModal(true);

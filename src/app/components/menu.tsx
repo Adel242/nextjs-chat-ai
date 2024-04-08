@@ -8,8 +8,8 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem,
 export default function Menu() {
 
   // useCredentials ./store
-  const { setCredentials } = useCredentialsStore()
-  const router = useRouter()
+  const { setCredentials } = useCredentialsStore();
+  const router = useRouter();
 
   const closeSession = () => {
     setCredentials({ apiKey: "", orgId: "" });

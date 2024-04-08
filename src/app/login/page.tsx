@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Textarea, Button } from "@nextui-org/react";
 import { useCredentialsStore } from "@/app/stores/store";
 import { useRouter } from "next/navigation";
-
+import Navbar from "../components/navbar";
 
 export default function Login() {
   const { setCredentials, apiKey, orgId } = useCredentialsStore();
@@ -41,9 +41,12 @@ export default function Login() {
       alert('Invalid API Key')   //setIsError(true)  necesito definir tipo de error
     }
   };
-
+  
   return (
     <>
+    <nav className="flex justify-between p-4">
+          <Navbar />
+        </nav>
       <div className="flex h-screen max-h-screen w-full justify-center mt-40">
         <form className="direction-column m " onSubmit={handleSubmit}>
           <div className="">

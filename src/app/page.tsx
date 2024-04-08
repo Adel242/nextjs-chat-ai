@@ -15,9 +15,8 @@ import useMarkdownRenderer from "./components/Markdown/use-markdown-renderer"
 import DropdownNavbar from "./components/menu";
 import Navbar from './components/navbar'
 
-
 export default function Home() {
-  const [agentImage, setAgentImage] = useState("");
+  // const [agentImage, setAgentImage] = useState("");
   const { apiKey, orgId } = useCredentialsStore();
   const [handleModal, setHandleModal] = useState(false);
   const { renderMessageContent } = useMarkdownRenderer();
@@ -59,10 +58,13 @@ export default function Home() {
     handleSubmit(e);
   };
 
+  console.log("messages",messages)
+  console.log("imagen" ,selectedAgent?.image)
+  console.log("nombre", selectedAgent?.name)
   return (
     <>
       <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
-        <nav className="flex justify-between p-4">
+        <nav className="flex  p-4">
           <div className="flex-grow">
             {<SearchAgent
               initialAgents={initialAgents}
@@ -80,7 +82,7 @@ export default function Home() {
         </nav>
 
         {!apiKey && <ModalWelcome />}
-
+   
         <ScrollShadow>
           <div className="container grid gap-4 max-w-2xl p-1 text-lg mx-auto pb-6">
             {
@@ -105,7 +107,7 @@ export default function Home() {
                 ))
             }
           </div>
-
+  
         </ScrollShadow>
         {/* Chat Input */}
         <footer className="container max-w-lg mx-auto p-3" >

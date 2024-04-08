@@ -119,14 +119,16 @@ div > p > code {
 
 pre {
     border-radius: 0 0 0.5rem 0.5rem !important;
+    width: 100%
 }
 
-/*cuando el width sea superior a 767px*/
-/*@media (min-width: 767px) {*/
-/*    div.codeblock {*/
-/*        width: calc(100% - 1.5rem)*/
-/*    }*/
-/*}*/
+/*cuando el width sea superior a 767px */
+@media (min-width: 767px) {
+  div.codeblock {
+        width: calc(100% - 1.5rem)
+ }
+} 
+
 
 
 /* tables ↓ */

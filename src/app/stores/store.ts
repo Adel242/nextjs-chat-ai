@@ -13,15 +13,15 @@ import { create } from 'zustand'
 // }))
 
 interface ApiKeyStore {
-  apiKey: string  ;
-  orgId: string ;
+  apiKey: string;
+  orgId: string;
   setCredentials: (props: { apiKey: string; orgId: string }) => void
-}
+};
 
 export const useCredentialsStore = create<ApiKeyStore>()((set) => ({
   apiKey: "",
   orgId: "",
-  setCredentials: ({apiKey, orgId}) => {
+  setCredentials: ({ apiKey, orgId }) => {
     set({ apiKey, orgId });
     localStorage.setItem('apiKey', apiKey ?? '');
     localStorage.setItem('orgId', orgId ?? '');

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import  FilteredAgents  from './filtered-agent';
-import { UseAgentSearchProps } from '../../types';
+import  FilteredAgents  from "./filtered-agent";
+import { UseAgentSearchProps } from "../../types";
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
 import { SparklesIcon } from "@heroicons/react/24/outline";
-import { useCredentialsStore } from "../stores/store";
+import { useCredentialsStore } from "../stores/store"; 
 
 export default function SearchAgent({ initialAgents, selectedAgent, setSelectedAgent  }: UseAgentSearchProps) {
   const [search, setSearch] = useState('');

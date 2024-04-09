@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useCredentialsStore } from "@/app/stores/store";
+import { useAgentsStore, useCredentialsStore } from "@/app/stores/store";
 import { useRouter } from "next/navigation";
 
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem, Button, User } from "@nextui-org/react";
@@ -9,12 +9,17 @@ export default function Menu() {
 
   // useCredentials ./store
   const { setCredentials } = useCredentialsStore();
+  const { setAgentData } = useAgentsStore();
   const router = useRouter();
 
   const closeSession = () => {
     setCredentials({ apiKey: "", orgId: "" });
     localStorage.removeItem('apiKey');
     localStorage.removeItem('orgId');
+    setAgentData({ agentImg: "", agentName: "", message: "" });
+    localStorage.removeItem('agentImg');
+    localStorage.removeItem('agentName');
+    localStorage.removeItem('message');
     router.push('/login');
   };
 

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Agent } from '../../types';
+import { useState, useEffect } from "react";
+import { Agent } from "../../types";
 
 const useFetchAgents = ({ apiKey, orgId }: { apiKey: string, orgId: string }) => {
   const [agents, setAgents] = useState<Agent[]>([]);

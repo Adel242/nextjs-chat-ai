@@ -11,7 +11,7 @@ export default function SearchAgent({ initialAgents, selectedAgent, setSelectedA
   // component useFilteredAgents
   const agents = FilteredAgents(initialAgents, search);
 
-  // function useCredentials ./Home
+  // function useCredentials ./Store
   const apiKey = useCredentialsStore((state) => state.apiKey);
 
   return (

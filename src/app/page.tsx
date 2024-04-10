@@ -53,7 +53,7 @@ export default function Home() {
     handleSubmit(e);
   };
 
-  //
+  // handle img and name agent in local storage
   useEffect(() => {
     if (messages.length > 0) {
       const lastMessage = messages[messages.length - 1];
@@ -67,8 +67,9 @@ export default function Home() {
     <>
       <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
         <nav className="flex  p-4">
-          <div className="flex-grow">
-            {<SearchAgent
+          <div className="flex-grow">            
+            {
+              <SearchAgent
               initialAgents={initialAgents}
               selectedAgent={selectedAgent}
               setSelectedAgent={setSelectedAgent}

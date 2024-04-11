@@ -32,7 +32,6 @@ export default function ModalWelcome() {
         radius="lg"
         classNames={{
           body: "py-10 px-5",
-          // header: "border-b-[1px] border-[#292f46]",
           footer: "border-t-[1px] border-[#292f46]",
         }}
       >

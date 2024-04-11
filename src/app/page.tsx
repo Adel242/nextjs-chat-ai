@@ -7,7 +7,7 @@ import { Avatar, Button, ScrollShadow, Textarea, Tooltip } from "@nextui-org/rea
 import { useRouter } from "next/navigation";
 import { ArchiveBoxXMarkIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useCredentialsStore, useAgentsStore } from "./stores/store";
-import ModalWelcome from "./modal-welcome/page";
+import ModalWelcome from "./components/welcome-modal";
 import useFetchAgents from "./components/useFetchAgents";
 import CleanChat from "./components/clean-chat";
 import SearchAgent from "./components/search-agent";
@@ -67,7 +67,7 @@ export default function Home() {
     <>
       <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
         <nav className="flex  p-4">
-          <div className="flex-grow">            
+          <div className="flex-grow">
             {
               <SearchAgent
               initialAgents={initialAgents}

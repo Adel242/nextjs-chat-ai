@@ -1,4 +1,4 @@
-import { codegpt } from "@/code_gpt";
+import { codegpt } from "@/codegpt";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -23,4 +23,4 @@ async function getAgents() {
   }
 };
 
-type Agent = Awaited<ReturnType<typeof getAgents>>[];
+// type Agent = Awaited<ReturnType<typeof getAgents>>[];

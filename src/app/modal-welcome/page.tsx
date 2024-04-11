@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useRouter } from "next/navigation"

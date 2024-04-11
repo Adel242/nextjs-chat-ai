@@ -61,7 +61,7 @@ export default function Home() {
       localStorage.setItem(`agentImg-${lastIndex}`, selectedAgent?.image || "");
       localStorage.setItem(`agentName-${lastIndex}`, selectedAgent?.name || "");
     }
-  }, [messages]);
+  }, [messages]) // eslint-disable-line
 
   return (
     <>

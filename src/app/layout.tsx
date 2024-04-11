@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { useCredentialsStore } from './stores/store'
 
 interface Props {
-  theme: string
+  // theme: string
   children: React.ReactNode
 };
 
@@ -25,19 +25,19 @@ interface Props {
 };
 
 export default function RootLayout({ children, params }: Props) {
-  const theme = 'dark'
+  // const theme = 'dark'
   const { setCredentials } = useCredentialsStore()
 
   useEffect(() => {
     const apiKey = localStorage.getItem('apiKey') ?? ""
     const orgId = localStorage.getItem('orgId') ?? ""
     setCredentials({ apiKey, orgId })
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
-    <html lang={params.lang} className={`${font.className} ${theme}`} translate='no'>
+    <html lang={params.lang} className={`${font.className} }`} translate='no'>
       <body>
-        <Providers theme={theme}>
+        <Providers>
           {/* <Navbar /> */}
           {children}
         </Providers>

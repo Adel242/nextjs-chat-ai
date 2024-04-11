@@ -7,7 +7,9 @@ const useFetchAgents = ({ apiKey, orgId }: { apiKey: string, orgId: string }) =>
   const [selectedAgent, setSelectedAgent] = useState<Agent>();
 
   useEffect(() => {
+    console.log('apiKey', apiKey)
     if (!apiKey) { return }
+    console.log('apiKey 2', apiKey)
     const headers: HeadersInit = {
       "accept": "application/json",
       "Authorization": `Bearer ${apiKey}`

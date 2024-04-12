@@ -2,7 +2,6 @@
 import { headers } from 'next/headers';
 // import { format } from 'path';
 
-
 export const runtime = 'edge';
 
 export async function POST(req: Request) {
@@ -12,6 +11,7 @@ export async function POST(req: Request) {
   const apiKey = headersList.get('Authorization') || '';
   const orgId = headersList.get('CodeGPT-Org-Id') || '';
 
+  console.log(apiKey, agentId)
   const response = await fetch('https://api-beta.codegpt.co/api/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -28,6 +28,7 @@ export async function POST(req: Request) {
       orgId,
     })
   });
+
 
   if (response.body === null) {
     throw new Error('Network response was not ok, eso.');

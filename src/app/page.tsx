@@ -85,7 +85,7 @@ export default function Home() {
         </nav>
 
         {!apiKey && <ModalWelcome />}
-
+        
         <ScrollShadow>
           <div className="container grid gap-4 max-w-2xl p-1 text-lg mx-auto pb-6">
             {messages
@@ -94,6 +94,7 @@ export default function Home() {
                 <div className='message px-2 py-4 rounded-2xl' key={index}>
                   <div className="grid gap-2">
                     <div className="flex gap-2 items-center">
+                      
                       <Avatar
                         className={`w-6 h-6 rounded-full ${message.role === "user" ? "bg-orange-200" : "bg-primary-500"} `}
                         src={message.role === "user" ? '' : localStorage.getItem(`agentImg-${index}`) ?? undefined} // Obtener la imagen del agente desde el localStorage
@@ -111,7 +112,7 @@ export default function Home() {
               ))
             }
           </div>
-
+           
         </ScrollShadow>
         {/* Chat Input */}
         <footer className="container max-w-lg mx-auto p-3" >

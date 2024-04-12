@@ -2,14 +2,14 @@
     "manifest_version": 3,
     "name": "chat-nextjs-ai",
     "description": "chat bot with Code GPT",
-    "version": "1.0",
+    "version": "0.0.1",
     "icons": {
-        "128": "icons/128.png"
+        "128": "icons/favicon-128.png"
     },
     "action": {
-        "default_popup": "popup.html",
+        "default_popup": "index.html",
         "default_icon": {
-            "128": "/icons/128.png"
+            "128": "/icons/favicon-128.png"
         }
     },
     "permissions": [
@@ -23,8 +23,9 @@
         }
     ],
     "background": {
-        "service_worker": "service-worker.js",
         "type": "module"
-    }
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-inline'; object-src 'self'"
+
     
 }

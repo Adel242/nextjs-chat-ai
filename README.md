@@ -74,7 +74,3 @@ If you'd like to contribute to this project, you're more than welcome to! You ca
 ## License
 
 This project is licensed under the MIT License.
-
-## URL Proyect
-
-**`Link`**

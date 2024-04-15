@@ -25,7 +25,7 @@ interface Props {
 };
 
 export default function RootLayout({ children, params }: Props) {
-  // const theme = 'dark'
+  const theme = 'dark'
   const { setCredentials } = useCredentialsStore()
 
   useEffect(() => {
@@ -35,9 +35,9 @@ export default function RootLayout({ children, params }: Props) {
   }, []); // eslint-disable-line
 
   return (
-    <html lang={params.lang} className={`${font.className} }`} translate='no'>
+    <html lang={params.lang} className={`${font.className} ${theme}`} translate='no'>
       <body>
-        <Providers>
+        <Providers theme={theme}>
           {/* <Navbar /> */}
           {children}
         </Providers>

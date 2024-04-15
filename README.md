@@ -1,92 +1,59 @@
-# README for Chat Application
+# Chat Bot with Specialized Agents
 
-This README provides an overview of a chat application built with React and various custom hooks for fetching, filtering, and managing chat data.
+This project consists of a chat bot where you can interact with different agents specialized in various topics. It utilizes the OpenAI API to generate intelligent responses and is developed using technologies such as React, Node.js, Next.js, Tailwind CSS, and Next UI for styles.
 
-## Overview
+## Configuration
 
-The chat application allows users to interact with agents, send messages, and manage chat sessions. It leverages React hooks for state management and side effects, and it includes a server-side component for fetching and posting data.
-
-## Features
-
-- Agent selection and search functionality
-- Real-time chat interface
-- Ability to clear the chat history
-- Server-side agent data fetching and message streaming
+To use this chat bot, you need to obtain an API Key from OpenAI. You can acquire one by registering on [OpenAI](https://openai.com/blog/openai-api). Additionally, an Organization ID is requested, though this is not mandatory.
 
 ## Installation
 
-To get started with the chat application, clone the repository and install the necessary dependencies.
+To obtain a copy of this project on your local machine, follow these steps:
 
-```bash
-git clone <repository-url>
-cd <repository-directory>
-npm install or pnpm install
-```
+1. Clone this repository using Git:
+
+    ```bash
+    git clone https://repository-url.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd repository-name
+    ```
+
+3. Install dependencies using [PNPM](https://pnpm.io/):
+
+    ```bash
+    pnpm install
+    ```
 
 ## Usage
 
-To run the application, you can use the following command:
+Once you have obtained your API Key, you can configure it in the application. To do so, you can go to the login page (`/login`) and provide your API Key and Organization ID (if necessary).
 
-```bash
-npm start
-```
+Once the credentials are configured, you can start the application and begin interacting with the specialized agents.
 
-This will start the development server and open the application in your default web browser.
+    ```bash
+    pnpm dev
+    ```
 
-## Components
+## Project Structure
 
-### `Home`
-
-The main component that renders the chat interface. It includes:
-
-- A dropdown to select an agent
-- A search input to filter agents
-- A chat display area to show messages
-- An input area to type and send new messages
-- A button to clear the chat
-
-### Custom Hooks
-
-#### `useChat`
-
-Manages the chat state, including messages, input changes, and submission.
-
-#### `useFetchAgents`
-
-Fetches the list of agents from the server and manages the selected agent state.
-
-#### `useFilteredAgents`
-
-Filters the agents based on the search input.
-
-#### `useCleanChat`
-
-Provides functionality to clear the chat history.
-
-## Server-Side
-
-### `GET`
-
-Handles fetching the list of agents from the server.
-
-### `POST`
-
-Handles sending messages to the server and streaming the response back to the client.
-
-## Types
+- **`pages/`**: Contains the application pages, including the main page (`Home`) and the login page (`Login`).
+- **`components/`**: Here you'll find reusable components of the application, such as the welcome modal, the navigation bar, and other 
+- **`stores/`**: Contains global states of the application using the `zustand` library.
+- **`api/router.ts`**: This file contains the routing logic for the chat functionality. It handles incoming requests and sends messages to the appropriate agent for processing.
+- **`api/agent.ts`**: Here you'll find the code related to interacting with the agents. It includes functions to retrieve agents from the server and send messages for processing.
 
 ## Contributing
 
-Defines the structure of an agent object used throughout the application.
+If you'd like to contribute to this project, you're more than welcome to! You can open an issue to discuss new features or submit a pull request with your proposed changes.
 
-## Development
+## License
 
-The application is set up with a modern React development environment. You can extend or modify the components and hooks as needed.
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## Contributing
+## URL Proyect
 
-Contributions to the application are welcome. Please ensure that your code adheres to the existing style and that all tests pass before submitting a pull request.
-
-##  `URL`
-
-https://nextjs-chat-extension-git-main-adel242s-projects.vercel.app/
+**`Link`**

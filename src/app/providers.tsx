@@ -8,10 +8,8 @@ interface Props {
 }
 
 export function Providers({ children }: Props) {
-
   return (
     <NextUIProvider>
-      
       {children}
     </NextUIProvider>
   )

@@ -1,10 +1,10 @@
-# Chat Bot with Specialized Agents
+`# Chat Bot with Specialized Agents. Code GPT
 
-This project consists of a chat bot where you can interact with different agents specialized in various topics. It utilizes the OpenAI API to generate intelligent responses and is developed using technologies such as React, Node.js, Next.js, Tailwind CSS, and Next UI for styles.
+This project consists of a chat bot where you can interact with different agents specialized in various topics. It utilizes the Code GPT to generate intelligent responses and is developed using technologies such as React, Node.js, Next.js, Tailwind CSS, and API Next UI for styles.
 
 ## Configuration
 
-To use this chat bot, you need to obtain an API Key from OpenAI. You can acquire one by registering on [OpenAI](https://openai.com/blog/openai-api). Additionally, an Organization ID is requested, though this is not mandatory.
+To use this chat bot, you need to obtain an API Key. You can acquire one by registering on [OpenAI](https://openai.com/blog/openai-api). Additionally, an Organization ID is requested, though this is not mandatory.
 
 ## Installation
 
@@ -13,13 +13,13 @@ To obtain a copy of this project on your local machine, follow these steps:
 1. Clone this repository using Git:
 
     ```bash
-    git clone https://repository-url.git
+    git clone [https://repository-url.git](https://github.com/Adel242/nextjs-chat-extension.git)
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd repository-name
+    cd chat-nextjs-ai
     ```
 
 3. Install dependencies using [PNPM](https://pnpm.io/):
@@ -28,11 +28,32 @@ To obtain a copy of this project on your local machine, follow these steps:
     pnpm install
     ```
 
-## Usage
+# Chat Bot Usage Instructions
 
-Once you have obtained your API Key, you can configure it in the application. To do so, you can go to the login page (`/login`) and provide your API Key and Organization ID (if necessary).
+## Obtaining an API Key
 
-Once the credentials are configured, you can start the application and begin interacting with the specialized agents.
+Before using the chat bot, you need to acquire an API Key by:
+
+- Signing up at [Code GPT](https://codegpt.co) or [OpenAI](https://openai.com/blog/openai-api).
+- In Code GPT, navigate to "ApiKeys" from the dropdown menu to create or use an existing API Key.
+- Alternatively, use an existing OpenAI API Key by registering at [OpenAI](https://openai.com/blog/openai-api).
+- Copy the generated or obtained API Key for application access.
+
+## Configuring the API Key in the Application
+
+To set up your API Key:
+
+1. Go to the `Menu/Log in` page.
+2. Enter your API Key into the designated text box.
+3. Optionally, provide your Organization ID if required by your Code GPT setup.
+
+## Starting the Application
+
+- With credentials configured, select a Code GPT agent from the dropdown menu to begin interaction.
+
+## Additional Information
+
+- For further assistance, refer to the documentation at [Code GPT Developers](https://developers.codegpt.co/?utm_source=playground&utm_medium=referral) or [Open AI Documentation](https://platform.openai.com/docs/introduction).
 
     ```bash
     pnpm dev
@@ -52,8 +73,4 @@ If you'd like to contribute to this project, you're more than welcome to! You ca
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
-## URL Proyect
-
-**`Link`**
+This project is licensed under the MIT License.

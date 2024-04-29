@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "package.json",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "public/**",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "api/**",
+        "use": "@vercel/node"
+      }
+    ],
+    "env": {
+      "API_KEY": "@api_key"
+    }
+  }
+  

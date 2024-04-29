@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export && npm run lint:build",
+    "build": "next build && next export && npm run lint:build && (test -n \"$API_KEY\" || echo 'No API_KEY provided')",
     "lint:build": "mv out/_next out/assets && gsed -i 's/\\/_next/\\/assets/g' out/**.html",
     "lint": "next lint"
   },

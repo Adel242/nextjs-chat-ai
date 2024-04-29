@@ -16,7 +16,6 @@ import DropdownNavbar from "./components/menu";
 import Navbar from "./components/navbar";
 
 export default function Home() {
-  // const [agentImage, setAgentImage] = useState("");
   const { apiKey, orgId } = useCredentialsStore();
   const { agentImg, agentName, setAgentData } = useAgentsStore();
   const [handleModal, setHandleModal] = useState(false);
@@ -66,20 +65,20 @@ export default function Home() {
   return (
     <>
       <div className="h-screen max-h-screen w-full grid grid-flow-row grid-rows-[1fr_auto]">
-        <nav className="flex  p-4">
+        <nav className="flex p-4">
           <div className="flex-grow">
             {
               <SearchAgent
-              initialAgents={initialAgents}
-              selectedAgent={selectedAgent}
-              setSelectedAgent={setSelectedAgent}
-            />
+                initialAgents={initialAgents}
+                selectedAgent={selectedAgent}
+                setSelectedAgent={setSelectedAgent}
+              />
             }
           </div>
-          <div className="flex-grow mx-4">
+          <div className="flex flex-row-reverse text-right w-10">
             <Navbar />
           </div>
-          <div className="flex-grow text-right">
+          <div className="text-right ml-10">
             <DropdownNavbar />
           </div>
         </nav>
@@ -114,7 +113,7 @@ export default function Home() {
 
         </ScrollShadow>
         {/* Chat Input */}
-        <footer className="container max-w-lg mx-auto p-3" >
+        <footer className="container max-w-5xl mx-auto p-3" >
           <form onSubmit={e => handleCredentials(e)} className="grid relative w-full">
 
             <Button
@@ -166,7 +165,7 @@ export default function Home() {
               endContent={
                 <Button
                   type="submit"
-                  isDisabled={input.trim().length < 3 || isLoading}
+                  isDisabled={input.trim().length < 3 || isLoading }
                   color="primary"
                 >Send</Button>
               }

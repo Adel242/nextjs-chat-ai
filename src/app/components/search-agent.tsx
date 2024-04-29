@@ -13,7 +13,6 @@ export default function SearchAgent({ initialAgents, selectedAgent, setSelectedA
 
   // function useCredentials ./Store
   const apiKey = useCredentialsStore((state) => state.apiKey);
-
   return (
     <>
       <Select
@@ -53,6 +52,7 @@ export default function SearchAgent({ initialAgents, selectedAgent, setSelectedA
             </div>
           ));
         }}
+       
       // defaultSelectedKeys={[initialAgents.length > 0 ? initialAgents[0].id : 0]}
       >
         {(agent: any) => (

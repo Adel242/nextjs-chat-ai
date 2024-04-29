@@ -38,6 +38,8 @@ const useFetchAgents = ({ apiKey, orgId }: { apiKey: string, orgId: string }) =>
       })
   }, [apiKey, orgId]);
 
+  console.log(agents,"agents")
+
   return { agents, agentsMarketPlace, selectedAgent, setSelectedAgent };
 };
 

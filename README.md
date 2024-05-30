@@ -1,6 +1,6 @@
 `# Chat Bot with Specialized Agents. Code GPT
 
-This project consists of a chat bot where you can interact with different agents specialized in various topics. It utilizes the Code GPT to generate intelligent responses and is developed using technologies such as React, Node.js, Next.js, Tailwind CSS, and API Next UI for styles.
+This project consists of a chat bot where you can interact with different agents specialized in various topics. It utilizes the Code GPT to generate intelligent responses and is developed using technologies such as React, Node.js, Next.js, Tailwind CSS, and API Next UI for styles
 
 ## Configuration
 
